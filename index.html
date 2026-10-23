@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AgentShelf: make sure AI shopping assistants know your products</title>
+  <meta name="description" content="AI shopping assistants recommend products using facts they can read. AgentShelf finds the facts hidden in your images and PDFs, cites every one to its source, and publishes them where Google and ChatGPT look.">
+  <meta property="og:title" content="AgentShelf: every product fact, with a receipt">
+  <meta property="og:description" content="Make sure AI shopping assistants know your sofa's dimensions, fabric and warranty, so they can recommend it.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="color-scheme" content="light">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700&family=Newsreader:ital,opsz,wght@1,6..72,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="config.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap header-row">
+      <a class="wordmark" href="#top" aria-label="AgentShelf home">
+        <svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="20" width="26" height="4" rx="2"/><rect x="6" y="9" width="8" height="10" rx="2"/><rect x="16" y="5" width="10" height="14" rx="2"/></svg>
+        <span translate="no">AgentShelf</span>
+      </a>
+      <nav aria-label="Main">
+        <a href="#how">How it works</a>
+        <a href="#receipts">Receipts</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <a class="btn btn-small js-cta" href="#snapshot">Get a free snapshot</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <h1>When shoppers ask AI for a sofa, does it know yours?</h1>
+          <p class="lede">AI shopping assistants recommend products using facts they can read: dimensions, fabric, warranty. Most product pages keep those facts in images and PDFs. We find them, cite every one to its source, and publish them where Google and ChatGPT look.</p>
+          <div class="cta-row">
+            <a class="btn js-cta" href="#snapshot">Get a free AI shelf snapshot</a>
+            <a class="btn btn-quiet" href="#receipts">See a sample receipt</a>
+          </div>
+          <p class="fine">For high-ticket furniture and mattress brands, and the agencies that run their stores.</p>
+        </div>
+
+        <figure class="panel" aria-labelledby="panel-title">
+          <div class="ask">
+            <span class="ask-label">A shopper asks</span>
+            <p>&ldquo;Best stain-resistant 3-seater under ₹60,000 for a home with a&nbsp;dog?&rdquo;</p>
+          </div>
+          <div class="panel-head">
+            <h2 id="panel-title">What the assistant can read on your sofa's page</h2>
+            <div class="toggle" role="group" aria-label="Show facts">
+              <button type="button" class="seg" data-state="before" aria-pressed="false">Today</button>
+              <button type="button" class="seg" data-state="after" aria-pressed="true">With AgentShelf</button>
+            </div>
+          </div>
+          <ul class="facts" data-view="after">
+            <li>
+              <span class="fact-name">Width</span>
+              <span class="before">Only inside an image</span>
+              <span class="after"><strong>213&nbsp;cm</strong><q><mark>W&nbsp;213&nbsp;cm × D&nbsp;92&nbsp;cm × H&nbsp;84&nbsp;cm</mark></q></span>
+            </li>
+            <li>
+              <span class="fact-name">Upholstery</span>
+              <span class="before">Not stated</span>
+              <span class="after"><strong>Performance velvet</strong><q>upholstered in <mark>stain-resistant performance velvet</mark></q></span>
+            </li>
+            <li>
+              <span class="fact-name">Stain resistance</span>
+              <span class="before">Not stated</span>
+              <span class="after"><strong>Yes, wipes clean</strong><q><mark>wipes clean</mark> with a damp cloth</q></span>
+            </li>
+            <li>
+              <span class="fact-name">Frame</span>
+              <span class="before">In a PDF spec sheet</span>
+              <span class="after"><strong>Solid sheesham wood</strong><q>Frame: <mark>solid sheesham wood</mark></q></span>
+            </li>
+            <li>
+              <span class="fact-name">Warranty</span>
+              <span class="before">Not stated</span>
+              <span class="after"><strong>5&nbsp;years on frame</strong><q><mark>Warranty: 5&nbsp;years on the frame</mark></q></span>
+            </li>
+          </ul>
+          <figcaption>
+            <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Every fact links to the sentence it came from. Nothing is published until your team approves it.
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="problem band-linen" aria-labelledby="problem-title">
+      <div class="wrap">
+        <h2 id="problem-title">Your best facts are where AI can't read them</h2>
+        <p class="section-lede">Assistants like Google AI Mode and ChatGPT compare products on written, structured facts. When the answer is only on a size chart image or in a PDF, your sofa drops out of the comparison, even when it's the better fit.</p>
+        <div class="gaps">
+          <div class="gap">
+            <h3>Dimensions in a picture</h3>
+            <p>A beautiful dimension chart is invisible to a model reading your page text and product feed.</p>
+          </div>
+          <div class="gap">
+            <h3>Specs in a download</h3>
+            <p>Frame wood, foam density and fabric rub count sit in a spec-sheet PDF that never reaches Merchant Center.</p>
+          </div>
+          <div class="gap">
+            <h3>Adjectives instead of answers</h3>
+            <p>&ldquo;Luxurious comfort&rdquo; doesn't answer &ldquo;is it good with a dog?&rdquo; A stated fabric and cleaning method does.</p>
+          </div>
+        </div>
+        <p class="stat">
+          In July 2026, visits to US retail sites referred by AI assistants were up 62% on a year earlier, and they converted better than other traffic.
+          <a href="https://www.digitalcommerce360.com/2026/08/19/adobe-ai-referral-traffic-data-july-2026/" rel="noopener" target="_blank">Adobe data via Digital Commerce 360</a>
+        </p>
+      </div>
+    </section>
+
+    <section class="how" id="how" aria-labelledby="how-title">
+      <div class="wrap">
+        <h2 id="how-title">How it works</h2>
+        <ol class="steps">
+          <li>
+            <h3>See your shelf</h3>
+            <p>We ask AI assistants the questions your shoppers ask, many times over, and show you how often you appear next to the brands you compete with.</p>
+          </li>
+          <li>
+            <h3>Find the facts</h3>
+            <p>We read your product pages, images and spec sheets and pull out the facts assistants compare on. Each one comes with the exact words it came from.</p>
+          </li>
+          <li>
+            <h3>You approve</h3>
+            <p>Your team reviews every fact in a simple sheet: approve, correct or reject. Claims about materials, stains, pets and warranty get extra care.</p>
+          </li>
+          <li>
+            <h3>Publish and measure</h3>
+            <p>We hand your team or agency a Merchant Center feed and product markup to upload, then re-run the same questions to show what changed.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="receipts band-linen" id="receipts" aria-labelledby="receipts-title">
+      <div class="wrap receipts-grid">
+        <div>
+          <h2 id="receipts-title">Every fact has a receipt</h2>
+          <p class="section-lede">A wrong &ldquo;stain-resistant&rdquo; claim can get a product disapproved on Google. So nothing we extract is trusted on its own word.</p>
+          <ul class="checks">
+            <li><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>If the quote isn't word for word on your page, the fact is dropped, automatically.</li>
+            <li><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Our bar for claim facts is 98% measured accuracy before anything ships.</li>
+            <li><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>You approve every fact. Your team or agency does the upload.</li>
+            <li><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>We never ask for your passwords.</li>
+          </ul>
+        </div>
+        <article class="receipt" aria-label="Sample receipt for one fact">
+          <header>
+            <span class="receipt-product">Arden 3-seater sofa</span>
+            <span class="chip chip-ok">Approved by your team</span>
+          </header>
+          <dl>
+            <div><dt>Fact</dt><dd>Frame material</dd></div>
+            <div><dt>Value</dt><dd><strong>Solid sheesham wood</strong></dd></div>
+            <div><dt>Source</dt><dd class="src">example.com/products/arden-3-seater</dd></div>
+            <div><dt>Quote</dt><dd><q>Frame: <mark>solid sheesham wood</mark>, kiln-dried for strength</q></dd></div>
+            <div><dt>Published as</dt><dd>Merchant Center product detail, Product markup</dd></div>
+          </dl>
+          <p class="receipt-note">Sample with a fictional brand.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="limits" aria-labelledby="limits-title">
+      <div class="wrap limits-grid">
+        <h2 id="limits-title">What we won't promise</h2>
+        <div class="limits-copy">
+          <p>Nobody can guarantee a spot in an AI answer, and anyone who does is guessing. Answers change from one question to the next, so we never judge your shelf by a single screenshot. We run every question several times and report the range.</p>
+          <p>What we can promise: your products will be described completely and accurately, in the places assistants read, with a source for every claim.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="pricing band-linen" id="pricing" aria-labelledby="pricing-title">
+      <div class="wrap">
+        <h2 id="pricing-title">Start free, pay when it's useful</h2>
+        <div class="tiers">
+          <div class="tier">
+            <h3>AI shelf snapshot</h3>
+            <p class="price">Free</p>
+            <p>A one-page view of what AI assistants recommend for your category, how often you appear, and the facts missing from your top 3 products.</p>
+          </div>
+          <div class="tier tier-feature">
+            <h3>Pilot fix</h3>
+            <p class="price">Free <span>for 2 brands this month</span></p>
+            <p>We extract and verify the facts for your top 20 products and prepare the feed and markup. In return, we share the before and after, anonymised.</p>
+          </div>
+          <div class="tier">
+            <h3>Full audit</h3>
+            <p class="price">From ₹25,000 <span>or $750 outside India</span></p>
+            <p>30 to 50 products, a fact-by-fact gap scorecard with sources, the shelf comparison, and a prioritised fix list.</p>
+          </div>
+        </div>
+        <p class="agencies"><strong>Running stores for several brands?</strong> Agencies can run AgentShelf under their own name for their clients, with per-brand pricing from ₹15,000. <a class="js-cta" href="#snapshot">Ask about an agency pilot</a></p>
+      </div>
+    </section>
+
+    <section class="faq" id="faq" aria-labelledby="faq-title">
+      <div class="wrap faq-grid">
+        <h2 id="faq-title">Questions brands ask</h2>
+        <div class="faq-list">
+          <details>
+            <summary>Does this work in India?</summary>
+            <p>Yes, for Google: AI Mode and Gemini read product data from Google Merchant Center, and that is live in India. ChatGPT's shopping results are currently US-focused, so for Indian brands we only promise Google.</p>
+          </details>
+          <details>
+            <summary>Will ChatGPT or Google definitely recommend us after this?</summary>
+            <p>No one can promise that. We make sure your products are described completely and accurately where assistants look, and we measure your shelf before and after with the same questions.</p>
+          </details>
+          <details>
+            <summary>What if you extract a fact wrong?</summary>
+            <p>Every fact carries the exact sentence it came from, and nothing is published until your team approves it. If a quote isn't on your page word for word, the fact is dropped before you ever see it.</p>
+          </details>
+          <details>
+            <summary>Do you need access to our store or Merchant Center?</summary>
+            <p>No. We work from your public pages and hand the feed and markup to your team or agency to upload. We never ask for passwords.</p>
+          </details>
+          <details>
+            <summary>We already work with an SEO agency.</summary>
+            <p>Good. This is product data work, not content writing, and it fits alongside them. Many of our conversations start with the agency.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="founder band-linen" aria-labelledby="founder-title">
+      <div class="wrap founder-grid">
+        <div class="monogram" aria-hidden="true">MA</div>
+        <div>
+          <h2 id="founder-title">Who's behind this</h2>
+          <p>I'm Mohamed Aamir, a machine learning engineer in Chennai. Before AgentShelf I built speech recognition and deepfake-audio detection systems, which is mostly the craft of not trusting a model's output until you can check it. AgentShelf applies that to product data. The extraction engine is being released as open source, so you can see exactly how it works.</p>
+          <p class="founder-links"><a href="https://github.com/MdAamirG" rel="noopener" target="_blank">GitHub</a><a class="js-linkedin" href="#" hidden rel="noopener" target="_blank">LinkedIn</a></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="snapshot" id="snapshot" aria-labelledby="snapshot-title">
+      <div class="wrap snapshot-box">
+        <div>
+          <h2 id="snapshot-title">Get your free AI shelf snapshot</h2>
+          <p>Send your store's address and the products you care about most. Within 3 working days you'll get a one-page snapshot of what AI assistants say in your category, and where your product facts have gaps.</p>
+        </div>
+        <div class="snapshot-actions">
+          <a class="btn btn-large js-mail" href="#">Request a snapshot by email</a>
+          <a class="btn btn-quiet js-cal" href="#" hidden>Or book a 20-minute call</a>
+          <p class="fine">No sales sequence. If it isn't useful, reply &ldquo;no&rdquo; and that's the end of it.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-row">
+      <span><span translate="no">AgentShelf</span>, Chennai</span>
+      <span>This site uses no cookies and no trackers.</span>
+      <a class="js-mail-plain" href="#">Email us</a>
+    </div>
+  </footer>
+</body>
+</html>
