@@ -58,3 +58,18 @@ The most characteristic thing in this world is the **evidence trail**: a fact on
 - The SaaS-card kit with identical shadows
 - Glassmorphism (UI-UX Pro Max suggested it; rejected as generic for this brief)
 - Trust-blue + orange
+
+---
+
+# v2 (24 Oct 2026): the concept is "Legible"
+
+**Idea:** people look at a sofa; AI shopping assistants *read* it. A product whose facts aren't written down is invisible to them. The visual language is the **furniture technical drawing**, because dimension lines, material callouts and a swing tag are exactly what a machine needs, and they come from the furniture world itself.
+
+- **Headline:** "AI can't see your sofa. It reads it."
+- **Hero:** a drawing sheet. On the left is the product page as text, which the AI reads, plus the AI's answer. On the right is a front-view line drawing of the sofa.
+  - **Before:** dashed outline, "?" on every callout and dimension, swing tag blank.
+  - **Then:** a reading beam sweeps the page and marker highlights land on 4 real sentences. Connector lines draw from each highlight to its callout. Values replace the "?" marks, the outline goes solid, and the AI answer card appears with citations.
+  - **Timing and access:** under 5 s. Pause/Replay live in the sheet's title strip. Reduced motion shows the final state. A text alternative is provided.
+- **New section, "What a shopper sees / What an AI reads":** a draggable comparison (`<input type=range>`, keyboard accessible) of the same product card. On one side, a styled listing with lifestyle copy. On the other, the plain text an AI extracts, where the facts trapped in images show as gaps.
+- **Launch film:** made with HyperFrames from real engine artifacts (facts JSON, approval sheet, Merchant Center feed). It opens in a `<dialog>` with captions, and the section is hidden until the MP4 exists.
+- **Texture:** a faint drawing-sheet grid (2–4% opacity) on the hero sheet only. Evergreen line-work at 1.5 px, with hairlines at 1 px.

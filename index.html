@@ -3,17 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AgentShelf: make sure AI shopping assistants know your products</title>
-  <meta name="description" content="AI shopping assistants recommend products using facts they can read. AgentShelf finds the facts hidden in your images and PDFs, cites every one to its source, and publishes them where Google and ChatGPT look.">
-  <meta property="og:title" content="AgentShelf: every product fact, with a receipt">
-  <meta property="og:description" content="Make sure AI shopping assistants know your sofa's dimensions, fabric and warranty, so they can recommend it.">
+  <title>AgentShelf: AI can't see your sofa. It reads it.</title>
+  <meta name="description" content="AI shopping assistants choose products from facts they can read. AgentShelf finds the facts trapped in your images and PDFs, cites every one to its source, and publishes them where Google and ChatGPT look.">
+  <meta property="og:title" content="AI can't see your sofa. It reads it.">
+  <meta property="og:description" content="Make your products legible to AI shopping assistants, with a receipt for every fact.">
   <meta property="og:type" content="website">
   <meta name="theme-color" content="#ffffff">
   <meta name="color-scheme" content="light">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700&family=Newsreader:ital,opsz,wght@1,6..72,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;800&family=Newsreader:ital,opsz,wght@1,6..72,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script src="config.js" defer></script>
   <script src="script.js" defer></script>
@@ -28,117 +28,230 @@
         <span translate="no">AgentShelf</span>
       </a>
       <nav aria-label="Main">
+        <a href="#reads">What AI reads</a>
         <a href="#how">How it works</a>
         <a href="#receipts">Receipts</a>
         <a href="#pricing">Pricing</a>
         <a href="#faq">FAQ</a>
       </nav>
-      <a class="btn btn-small js-cta" href="#snapshot">Get a free snapshot</a>
+      <a class="btn btn-small" href="#snapshot">Get a free snapshot</a>
     </div>
   </header>
 
   <main id="main">
-    <section class="hero" id="top">
-      <div class="wrap hero-grid">
-        <div class="hero-copy">
-          <h1>When shoppers ask AI for a sofa, does it know yours?</h1>
-          <p class="lede">AI shopping assistants recommend products using facts they can read: dimensions, fabric, warranty. Most product pages keep those facts in images and PDFs. We find them, cite every one to its source, and publish them where Google and ChatGPT look.</p>
-          <div class="cta-row">
-            <a class="btn js-cta" href="#snapshot">Get a free AI shelf snapshot</a>
-            <a class="btn btn-quiet" href="#receipts">See a sample receipt</a>
-          </div>
-          <p class="fine">For high-ticket furniture and mattress brands, and the agencies that run their stores.</p>
-        </div>
-
-        <figure class="panel" aria-labelledby="panel-title">
-          <div class="ask">
-            <span class="ask-label">A shopper asks</span>
-            <p>&ldquo;Best stain-resistant 3-seater under ₹60,000 for a home with a&nbsp;dog?&rdquo;</p>
-          </div>
-          <div class="panel-head">
-            <h2 id="panel-title">What the assistant can read on your sofa's page</h2>
-            <div class="toggle" role="group" aria-label="Show facts">
-              <button type="button" class="seg" data-state="before" aria-pressed="false">Today</button>
-              <button type="button" class="seg" data-state="after" aria-pressed="true">With AgentShelf</button>
+    <!-- HERO -->
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="wrap">
+        <div class="hero-head">
+          <h1 id="hero-title">AI can't see your sofa. It reads it.</h1>
+          <div class="hero-side">
+            <p class="lede">Shopping assistants pick products from facts written down on the page. When your dimensions, fabric and warranty live in images and PDFs, your sofa is missing from the answer. We make every fact legible, with a receipt.</p>
+            <div class="cta-row">
+              <a class="btn" href="#snapshot">Get a free AI shelf snapshot</a>
+              <a class="btn btn-quiet" href="#reads">See what AI reads</a>
             </div>
           </div>
-          <ul class="facts" data-view="after">
-            <li>
-              <span class="fact-name">Width</span>
-              <span class="before">Only inside an image</span>
-              <span class="after"><strong>213&nbsp;cm</strong><q><mark>W&nbsp;213&nbsp;cm × D&nbsp;92&nbsp;cm × H&nbsp;84&nbsp;cm</mark></q></span>
-            </li>
-            <li>
-              <span class="fact-name">Upholstery</span>
-              <span class="before">Not stated</span>
-              <span class="after"><strong>Performance velvet</strong><q>upholstered in <mark>stain-resistant performance velvet</mark></q></span>
-            </li>
-            <li>
-              <span class="fact-name">Stain resistance</span>
-              <span class="before">Not stated</span>
-              <span class="after"><strong>Yes, wipes clean</strong><q><mark>wipes clean</mark> with a damp cloth</q></span>
-            </li>
-            <li>
-              <span class="fact-name">Frame</span>
-              <span class="before">In a PDF spec sheet</span>
-              <span class="after"><strong>Solid sheesham wood</strong><q>Frame: <mark>solid sheesham wood</mark></q></span>
-            </li>
-            <li>
-              <span class="fact-name">Warranty</span>
-              <span class="before">Not stated</span>
-              <span class="after"><strong>5&nbsp;years on frame</strong><q><mark>Warranty: 5&nbsp;years on the frame</mark></q></span>
-            </li>
-          </ul>
-          <figcaption>
-            <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-            Every fact links to the sentence it came from. Nothing is published until your team approves it.
+        </div>
+
+        <figure class="sheet" id="sheet" aria-labelledby="sheet-caption">
+          <div class="sheet-grid">
+            <div class="sheet-left">
+              <article class="page-card" aria-label="Product page text, as an AI reads it">
+                <div class="page-bar" aria-hidden="true"><span></span><span></span><span></span><em>example.com/products/arden-3-seater</em></div>
+                <div class="page-body">
+                  <h2>Arden 3-seater sofa</h2>
+                  <p>Our bestselling 3-seater, upholstered in <mark data-link="fabric">stain-resistant performance velvet</mark> that wipes clean.</p>
+                  <p>Dimensions: <mark data-link="width">W&nbsp;213&nbsp;cm × D&nbsp;92&nbsp;cm × H&nbsp;84&nbsp;cm</mark></p>
+                  <p>Frame: <mark data-link="frame">solid sheesham wood</mark>. Warranty: <mark data-link="warranty">5&nbsp;years on the frame</mark>.</p>
+                  <div class="beam" aria-hidden="true"></div>
+                </div>
+              </article>
+
+              <div class="answer" aria-live="polite">
+                <p class="answer-q">&ldquo;Stain-resistant 3-seater under ₹60,000, good with a dog?&rdquo;</p>
+                <p class="answer-a"><strong>Arden 3-seater sofa</strong> fits: 213&nbsp;cm wide, stain-resistant performance velvet that wipes clean, solid sheesham frame with a 5-year warranty.</p>
+                <p class="answer-cite"><span>Sources</span><a href="#receipts">[1] product page</a><a href="#receipts">[2] Merchant Center</a></p>
+              </div>
+            </div>
+
+            <div class="drawing">
+              <svg class="sofa sofa-full" viewBox="0 0 760 420" role="img" aria-labelledby="sofa-title sofa-desc">
+                <title id="sofa-title">Front view drawing of the Arden 3-seater sofa</title>
+                <desc id="sofa-desc">Annotated with its facts: performance velvet upholstery, 213 centimetres wide, solid sheesham frame, and a 5-year frame warranty on a swing tag.</desc>
+                <!-- sofa, front view -->
+                <g class="body" transform="translate(214 -10) scale(0.86)">
+                  <rect x="166" y="132" width="404" height="112" rx="18"/>
+                  <rect class="cushion" x="176" y="144" width="126" height="92" rx="14"/>
+                  <rect class="cushion" x="310" y="144" width="126" height="92" rx="14"/>
+                  <rect class="cushion" x="444" y="144" width="116" height="92" rx="14"/>
+                  <rect x="120" y="194" width="58" height="132" rx="22"/>
+                  <rect x="558" y="194" width="58" height="132" rx="22"/>
+                  <rect x="144" y="240" width="448" height="86" rx="14"/>
+                  <rect class="cushion" x="178" y="244" width="124" height="42" rx="10"/>
+                  <rect class="cushion" x="310" y="244" width="124" height="42" rx="10"/>
+                  <rect class="cushion" x="442" y="244" width="116" height="42" rx="10"/>
+                  <rect x="168" y="326" width="14" height="22" rx="3"/>
+                  <rect x="554" y="326" width="14" height="22" rx="3"/>
+                </g>
+                <!-- width dimension -->
+                <path class="dim-line" d="M317 336 H744 M317 326 V346 M744 326 V346"/>
+                <!-- annotation column, top to bottom in the order the page states them -->
+                <g class="callout" data-anchor="fabric">
+                  <g transform="translate(0 40)"><rect width="236" height="42" rx="21"/>
+                  <text x="18" y="27"><tspan class="k">Upholstery </tspan><tspan class="q">?</tspan><tspan class="v">perf. velvet</tspan></text></g>
+                  <path class="leader" d="M236 61 H316 L404 148"/>
+                </g>
+                <g class="callout" data-anchor="width">
+                  <g transform="translate(0 120)"><rect width="236" height="42" rx="21"/>
+                  <text x="18" y="27"><tspan class="k">Width </tspan><tspan class="q">? cm</tspan><tspan class="v">213 cm</tspan></text></g>
+                  <path class="leader" d="M236 141 H276 V336 H312"/>
+                </g>
+                <g class="callout" data-anchor="frame">
+                  <g transform="translate(0 200)"><rect width="236" height="42" rx="21"/>
+                  <text x="18" y="27"><tspan class="k">Frame </tspan><tspan class="q">?</tspan><tspan class="v">solid sheesham</tspan></text></g>
+                  <path class="leader" d="M236 221 H262 L330 230"/>
+                </g>
+                <g class="tag" data-anchor="warranty">
+                  <path class="tag-shape" d="M12 280 h216 a8 8 0 0 1 8 8 v34 a8 8 0 0 1 -8 8 h-216 l-12 -25 z"/>
+                  <circle cx="18" cy="305" r="3.5"/>
+                  <text x="32" y="311"><tspan class="k">Warranty </tspan><tspan class="q">?</tspan><tspan class="v">5 yrs on frame</tspan></text>
+                  <path class="tag-string" d="M236 305 C 270 305, 290 292, 318 288"/>
+                </g>
+              </svg>
+              <svg class="sofa sofa-mini" viewBox="0 0 540 260" aria-hidden="true">
+                <g class="body" transform="translate(-100 -110)">
+                  <rect x="166" y="132" width="404" height="112" rx="18"/>
+                  <rect class="cushion" x="176" y="144" width="126" height="92" rx="14"/>
+                  <rect class="cushion" x="310" y="144" width="126" height="92" rx="14"/>
+                  <rect class="cushion" x="444" y="144" width="116" height="92" rx="14"/>
+                  <rect x="120" y="194" width="58" height="132" rx="22"/>
+                  <rect x="558" y="194" width="58" height="132" rx="22"/>
+                  <rect x="144" y="240" width="448" height="86" rx="14"/>
+                  <rect class="cushion" x="178" y="244" width="124" height="42" rx="10"/>
+                  <rect class="cushion" x="310" y="244" width="124" height="42" rx="10"/>
+                  <rect class="cushion" x="442" y="244" width="116" height="42" rx="10"/>
+                  <rect x="168" y="326" width="14" height="22" rx="3"/>
+                  <rect x="554" y="326" width="14" height="22" rx="3"/>
+                </g>
+                <path class="dim-line" d="M20 248 H516 M20 238 V258 M516 238 V258"/>
+              </svg>
+              <ul class="facts-mobile" aria-hidden="true">
+                <li data-anchor="fabric"><span class="k">Upholstery</span><span class="q">?</span><span class="v">Performance velvet</span></li>
+                <li data-anchor="width"><span class="k">Width</span><span class="q">? cm</span><span class="v">213 cm</span></li>
+                <li data-anchor="frame"><span class="k">Frame</span><span class="q">?</span><span class="v">Solid sheesham</span></li>
+                <li data-anchor="warranty"><span class="k">Warranty</span><span class="q">?</span><span class="v">5 years on frame</span></li>
+              </ul>
+            </div>
+          </div>
+          <svg class="links" aria-hidden="true"></svg>
+
+          <figcaption class="title-strip">
+            <span id="sheet-caption">Sheet 1: Arden 3-seater, front view. Every fact on the drawing is quoted from the page on the left.</span>
+            <span class="controls">
+              <button type="button" class="ctl" id="play-toggle" aria-pressed="false">Pause</button>
+              <button type="button" class="ctl" id="replay">Replay</button>
+            </span>
           </figcaption>
         </figure>
       </div>
     </section>
 
-    <section class="problem band-linen" aria-labelledby="problem-title">
-      <div class="wrap">
-        <h2 id="problem-title">Your best facts are where AI can't read them</h2>
-        <p class="section-lede">Assistants like Google AI Mode and ChatGPT compare products on written, structured facts. When the answer is only on a size chart image or in a PDF, your sofa drops out of the comparison, even when it's the better fit.</p>
-        <div class="gaps">
-          <div class="gap">
-            <h3>Dimensions in a picture</h3>
-            <p>A beautiful dimension chart is invisible to a model reading your page text and product feed.</p>
-          </div>
-          <div class="gap">
-            <h3>Specs in a download</h3>
-            <p>Frame wood, foam density and fabric rub count sit in a spec-sheet PDF that never reaches Merchant Center.</p>
-          </div>
-          <div class="gap">
-            <h3>Adjectives instead of answers</h3>
-            <p>&ldquo;Luxurious comfort&rdquo; doesn't answer &ldquo;is it good with a dog?&rdquo; A stated fabric and cleaning method does.</p>
-          </div>
+    <!-- THE SHIFT -->
+    <section class="shift" aria-labelledby="shift-title">
+      <div class="wrap shift-grid">
+        <h2 id="shift-title">Shoppers stopped scrolling. They ask.</h2>
+        <div>
+          <p class="big">&ldquo;Best stain-resistant 3-seater under ₹60,000 for a home with a dog&rdquo; is a question no filter menu answers, and AI assistants now answer it in one reply. They compare products on written facts, and they cite where each fact came from.</p>
+          <p class="stat">In July 2026, visits to US retail sites referred by AI assistants were up 62% on a year earlier, and they converted better than other traffic. <a href="https://www.digitalcommerce360.com/2026/08/19/adobe-ai-referral-traffic-data-july-2026/" rel="noopener" target="_blank">Adobe data via Digital Commerce 360</a></p>
         </div>
-        <p class="stat">
-          In July 2026, visits to US retail sites referred by AI assistants were up 62% on a year earlier, and they converted better than other traffic.
-          <a href="https://www.digitalcommerce360.com/2026/08/19/adobe-ai-referral-traffic-data-july-2026/" rel="noopener" target="_blank">Adobe data via Digital Commerce 360</a>
-        </p>
       </div>
     </section>
 
+    <!-- COMPARE -->
+    <section class="reads band-linen" id="reads" aria-labelledby="reads-title">
+      <div class="wrap">
+        <h2 id="reads-title">Same product page. Two very different readers.</h2>
+        <p class="section-lede">The same listing, rendered for two readers. Drag the handle to compare what a shopper sees with what an AI can actually read.</p>
+
+        <div class="compare" style="--pos: 50%">
+          <div class="pane pane-ai" aria-hidden="true">
+            <span class="pane-label">What an AI reads</span>
+            <div class="listing">
+              <div class="listing-img ai-img"><span>[image]</span><span>Sofa photo and dimension chart. No readable text.</span></div>
+              <div class="listing-body ai-body">
+                <p class="listing-title">Arden 3-seater sofa</p>
+                <p class="listing-price">₹54,990</p>
+                <p class="ai-plain">Luxuriously soft. Designed for the way you live.</p>
+                <p class="ai-gap">[3 colour swatches, no names]</p>
+                <p class="ai-gap">[spec-sheet.pdf, not followed]</p>
+                <dl class="ai-facts">
+                  <div><dt>Width</dt><dd class="miss">unknown</dd></div>
+                  <div><dt>Fabric</dt><dd class="miss">unknown</dd></div>
+                  <div><dt>Stain resistant</dt><dd class="miss">unknown</dd></div>
+                  <div><dt>Warranty</dt><dd class="miss">unknown</dd></div>
+                </dl>
+              </div>
+            </div>
+          </div>
+          <div class="pane pane-shopper" aria-hidden="true">
+            <span class="pane-label">What a shopper sees</span>
+            <div class="listing">
+              <div class="listing-img">
+                <svg viewBox="0 0 400 260" aria-hidden="true">
+                  <rect x="0" y="0" width="400" height="260" fill="#e7e2d6"/>
+                  <rect x="0" y="196" width="400" height="64" fill="#d9d2c2"/>
+                  <rect x="292" y="30" width="70" height="96" rx="4" fill="#f3efe6"/>
+                  <g fill="#3f6b62">
+                    <rect x="78" y="82" width="244" height="68" rx="12"/>
+                    <rect x="50" y="112" width="38" height="84" rx="14"/>
+                    <rect x="312" y="112" width="38" height="84" rx="14"/>
+                    <rect x="66" y="144" width="268" height="52" rx="10"/>
+                  </g>
+                  <g fill="#54857a"><rect x="86" y="90" width="74" height="54" rx="9"/><rect x="164" y="90" width="74" height="54" rx="9"/><rect x="242" y="90" width="72" height="54" rx="9"/></g>
+                  <g fill="#6b4a32"><rect x="84" y="196" width="8" height="14" rx="2"/><rect x="308" y="196" width="8" height="14" rx="2"/></g>
+                  <rect x="120" y="226" width="160" height="10" rx="5" fill="#cfc6b3"/>
+                </svg>
+              </div>
+              <div class="listing-body">
+                <p class="listing-title">Arden 3-seater sofa</p>
+                <p class="listing-price">₹54,990</p>
+                <p class="listing-copy">Luxuriously soft. Designed for the way you live.</p>
+                <div class="swatches"><span style="background:#3f6b62"></span><span style="background:#8b6f5a"></span><span style="background:#2f3a4a"></span></div>
+                <p class="listing-dl">Download spec sheet (PDF)</p>
+                <p class="listing-rating">4.6 out of 5, 312 reviews</p>
+              </div>
+            </div>
+          </div>
+          <span class="divider" aria-hidden="true"><span class="knob"></span></span>
+          <label class="sr-only" for="compare-range">Compare what a shopper sees with what an AI can read</label>
+          <input class="range" id="compare-range" type="range" min="0" max="100" value="50" aria-valuetext="50% shopper view">
+        </div>
+        <p class="compare-text sr-only">A shopper sees a photo, a price, a colour swatch and lifestyle copy. An AI reading the same page gets the name, price and delivery time, but width, fabric, stain resistance, frame and warranty are unknown because they are only in an image and a PDF.</p>
+      </div>
+    </section>
+
+    <!-- HOW -->
     <section class="how" id="how" aria-labelledby="how-title">
       <div class="wrap">
-        <h2 id="how-title">How it works</h2>
+        <h2 id="how-title">From hidden to legible in four steps</h2>
         <ol class="steps">
           <li>
+            <svg class="step-ic" viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="10" width="36" height="28" rx="4"/><path d="M14 20h20M14 27h12"/><circle cx="36" cy="34" r="7"/><path d="m41 39 4 4"/></svg>
             <h3>See your shelf</h3>
-            <p>We ask AI assistants the questions your shoppers ask, many times over, and show you how often you appear next to the brands you compete with.</p>
+            <p>We ask AI assistants the questions your shoppers ask, many times over, and show how often you appear next to the brands you compete with.</p>
           </li>
           <li>
+            <svg class="step-ic" viewBox="0 0 48 48" aria-hidden="true"><rect x="8" y="6" width="26" height="36" rx="3"/><path d="M14 16h14M14 23h14M14 30h8"/><path class="hl" d="M13 22.5h16"/></svg>
             <h3>Find the facts</h3>
             <p>We read your product pages, images and spec sheets and pull out the facts assistants compare on. Each one comes with the exact words it came from.</p>
           </li>
           <li>
+            <svg class="step-ic" viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="8" width="36" height="32" rx="4"/><path d="M6 18h36M18 18v22"/><path d="m24 29 4 4 8-9"/></svg>
             <h3>You approve</h3>
             <p>Your team reviews every fact in a simple sheet: approve, correct or reject. Claims about materials, stains, pets and warranty get extra care.</p>
           </li>
           <li>
+            <svg class="step-ic" viewBox="0 0 48 48" aria-hidden="true"><path d="M8 36h32"/><rect x="12" y="20" width="8" height="16" rx="2"/><rect x="24" y="12" width="10" height="24" rx="2"/><path d="M30 6l6 6-6 6"/></svg>
             <h3>Publish and measure</h3>
             <p>We hand your team or agency a Merchant Center feed and product markup to upload, then re-run the same questions to show what changed.</p>
           </li>
@@ -146,6 +259,7 @@
       </div>
     </section>
 
+    <!-- RECEIPTS -->
     <section class="receipts band-linen" id="receipts" aria-labelledby="receipts-title">
       <div class="wrap receipts-grid">
         <div>
@@ -159,22 +273,44 @@
           </ul>
         </div>
         <article class="receipt" aria-label="Sample receipt for one fact">
-          <header>
+          <div class="receipt-top">
             <span class="receipt-product">Arden 3-seater sofa</span>
             <span class="chip chip-ok">Approved by your team</span>
-          </header>
+          </div>
           <dl>
             <div><dt>Fact</dt><dd>Frame material</dd></div>
             <div><dt>Value</dt><dd><strong>Solid sheesham wood</strong></dd></div>
             <div><dt>Source</dt><dd class="src">example.com/products/arden-3-seater</dd></div>
-            <div><dt>Quote</dt><dd><q>Frame: <mark>solid sheesham wood</mark>, kiln-dried for strength</q></dd></div>
+            <div><dt>Quote</dt><dd><q>Frame: <mark>solid sheesham wood</mark>. Warranty: 5&nbsp;years on the frame.</q></dd></div>
             <div><dt>Published as</dt><dd>Merchant Center product detail, Product markup</dd></div>
           </dl>
+          <div class="receipt-perf" aria-hidden="true"></div>
           <p class="receipt-note">Sample with a fictional brand.</p>
         </article>
       </div>
     </section>
 
+    <!-- FILM (shown when config.film is set) -->
+    <section class="film" id="film" aria-labelledby="film-title" hidden>
+      <div class="wrap film-grid">
+        <div>
+          <h2 id="film-title">The 40-second version</h2>
+          <p class="section-lede">How a product page becomes something an AI can recommend, shown with the real output of the engine.</p>
+        </div>
+        <button type="button" class="film-open" id="film-open" aria-haspopup="dialog">
+          <img class="film-poster" alt="" width="1920" height="1080" loading="lazy" decoding="async">
+          <span class="play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>Watch the film</span></span>
+        </button>
+      </div>
+      <dialog class="film-dialog" id="film-dialog" aria-label="AgentShelf film">
+        <div class="film-frame">
+          <video controls playsinline preload="none" width="1920" height="1080"><track kind="captions" srclang="en" label="English" default></video>
+          <button type="button" class="film-close" id="film-close">Close</button>
+        </div>
+      </dialog>
+    </section>
+
+    <!-- LIMITS -->
     <section class="limits" aria-labelledby="limits-title">
       <div class="wrap limits-grid">
         <h2 id="limits-title">What we won't promise</h2>
@@ -185,6 +321,7 @@
       </div>
     </section>
 
+    <!-- PRICING -->
     <section class="pricing band-linen" id="pricing" aria-labelledby="pricing-title">
       <div class="wrap">
         <h2 id="pricing-title">Start free, pay when it's useful</h2>
@@ -205,10 +342,11 @@
             <p>30 to 50 products, a fact-by-fact gap scorecard with sources, the shelf comparison, and a prioritised fix list.</p>
           </div>
         </div>
-        <p class="agencies"><strong>Running stores for several brands?</strong> Agencies can run AgentShelf under their own name for their clients, with per-brand pricing from ₹15,000. <a class="js-cta" href="#snapshot">Ask about an agency pilot</a></p>
+        <p class="agencies"><strong>Running stores for several brands?</strong> Agencies can run AgentShelf under their own name for their clients, with per-brand pricing from ₹15,000. <a href="#snapshot">Ask about an agency pilot</a></p>
       </div>
     </section>
 
+    <!-- FAQ -->
     <section class="faq" id="faq" aria-labelledby="faq-title">
       <div class="wrap faq-grid">
         <h2 id="faq-title">Questions brands ask</h2>
@@ -237,6 +375,7 @@
       </div>
     </section>
 
+    <!-- FOUNDER -->
     <section class="founder band-linen" aria-labelledby="founder-title">
       <div class="wrap founder-grid">
         <div class="monogram" aria-hidden="true">MA</div>
@@ -248,15 +387,17 @@
       </div>
     </section>
 
+    <!-- CTA -->
     <section class="snapshot" id="snapshot" aria-labelledby="snapshot-title">
       <div class="wrap snapshot-box">
         <div>
-          <h2 id="snapshot-title">Get your free AI shelf snapshot</h2>
+          <h2 id="snapshot-title">Find out what AI reads on your pages</h2>
           <p>Send your store's address and the products you care about most. Within 3 working days you'll get a one-page snapshot of what AI assistants say in your category, and where your product facts have gaps.</p>
         </div>
         <div class="snapshot-actions">
-          <a class="btn btn-large js-mail" href="#">Request a snapshot by email</a>
+          <a class="btn btn-large js-mail" href="#snapshot">Request a free snapshot</a>
           <a class="btn btn-quiet js-cal" href="#" hidden>Or book a 20-minute call</a>
+          <p class="fine js-mail-missing">Contact details are being set up.</p>
           <p class="fine">No sales sequence. If it isn't useful, reply &ldquo;no&rdquo; and that's the end of it.</p>
         </div>
       </div>
@@ -267,7 +408,7 @@
     <div class="wrap footer-row">
       <span><span translate="no">AgentShelf</span>, Chennai</span>
       <span>This site uses no cookies and no trackers.</span>
-      <a class="js-mail-plain" href="#">Email us</a>
+      <a class="js-mail-plain" href="#snapshot">Email us</a>
     </div>
   </footer>
 </body>
