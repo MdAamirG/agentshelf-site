@@ -1,0 +1,180 @@
+{
+  "schema_version": "1.0",
+  "tool": "agentshelf-engine",
+  "tool_version": "0.1.0",
+  "generated_at": "2026-10-23T21:58:52+00:00",
+  "category": "sofa",
+  "products": [
+    {
+      "url": "https://example.com/products/arden-3-seater",
+      "title": "Arden 3-seater sofa",
+      "brand": "Example Living",
+      "item_id": "ARD-3S",
+      "price": {
+        "amount": 54990.0,
+        "currency": "INR"
+      },
+      "has_product_jsonld": true,
+      "review_count": null,
+      "rating": null,
+      "facts": [
+        {
+          "name": "dim_width",
+          "status": "present",
+          "value": "213 cm",
+          "source_url": "https://example.com/products/arden-3-seater",
+          "source_quote": "W 213 cm × D 92 cm × H 84 cm",
+          "source_image_url": null,
+          "confidence": 0.96,
+          "needs_human_check": false
+        },
+        {
+          "name": "dim_depth",
+          "status": "missing",
+          "value": null,
+          "source_url": null,
+          "source_quote": null,
+          "source_image_url": null,
+          "confidence": null,
+          "needs_human_check": false
+        },
+        {
+          "name": "dim_height",
+          "status": "missing",
+          "value": null,
+          "source_url": null,
+          "source_quote": null,
+          "source_image_url": null,
+          "confidence": null,
+          "needs_human_check": false
+        },
+        {
+          "name": "seat_depth_or_thickness",
+          "status": "missing",
+          "value": null,
+          "source_url": null,
+          "source_quote": null,
+          "source_image_url": null,
+          "confidence": null,
+          "needs_human_check": false
+        },
+        {
+          "name": "seats_or_sizes",
+          "status": "missing",
+          "value": null,
+          "source_url": null,
+          "source_quote": null,
+          "source_image_url": null,
+          "confidence": null,
+          "needs_human_check": false
+        },
+        {
+          "name": "frame_or_core_material",
+          "status": "present",
+          "value": "solid sheesham wood",
+          "source_url": "https://example.com/products/arden-3-seater",
+          "source_quote": "Frame: solid sheesham wood",
+          "source_image_url": null,
+          "confidence": 0.97,
+          "needs_human_check": false
+        },
+        {
+          "name": "fabric_or_comfort_layer",
+          "status": "present",
+          "value": "performance velvet",
+          "source_url": "https://example.com/products/arden-3-seater",
+          "source_quote": "upholstered in stain-resistant performance velvet",
+          "source_image_url": null,
+          "confidence": 0.95,
+          "needs_human_check": false
+        },
+        {
+          "name": "firmness_or_cushion_fill",
+          "status": "missing",
+          "value": null,
+          "source_url": null,
+          "source_quote": null,
+          "source_image_url": null,
+          "confidence": null,
+          "needs_human_check": false
+        },
+        {
+          "name": "stain_or_cooling_feature",
+          "status": "present",
+          "value": "stain-resistant, wipes clean",
+          "source_url": "https://example.com/products/arden-3-seater",
+          "source_quote": "stain-resistant performance velvet that wipes clean",
+          "source_image_url": null,
+          "confidence": 0.93,
+          "needs_human_check": false
+        },
+        {
+          "name": "pet_or_kid_friendly_stated",
+          "status": "missing",
+          "value": null,
+          "source_url": null,
+          "source_quote": null,
+          "source_image_url": null,
+          "confidence": null,
+          "needs_human_check": false
+        },
+        {
+          "name": "removable_covers_or_trial_length",
+          "status": "missing",
+          "value": null,
+          "source_url": null,
+          "source_quote": null,
+          "source_image_url": null,
+          "confidence": null,
+          "needs_human_check": false
+        },
+        {
+          "name": "warranty_stated",
+          "status": "present",
+          "value": "5 years on the frame",
+          "source_url": "https://example.com/products/arden-3-seater",
+          "source_quote": "Warranty: 5 years on the frame",
+          "source_image_url": null,
+          "confidence": 0.96,
+          "needs_human_check": false
+        },
+        {
+          "name": "returns_stated",
+          "status": "missing",
+          "value": null,
+          "source_url": null,
+          "source_quote": null,
+          "source_image_url": null,
+          "confidence": null,
+          "needs_human_check": false
+        },
+        {
+          "name": "delivery_time_stated",
+          "status": "present",
+          "value": "7 to 10 days",
+          "source_url": "https://example.com/products/arden-3-seater",
+          "source_quote": "Free delivery in 7 to 10 days",
+          "source_image_url": null,
+          "confidence": 0.9,
+          "needs_human_check": false
+        },
+        {
+          "name": "certifications",
+          "status": "missing",
+          "value": null,
+          "source_url": null,
+          "source_quote": null,
+          "source_image_url": null,
+          "confidence": null,
+          "needs_human_check": false
+        }
+      ],
+      "completeness_score": 0.4,
+      "top_gaps": [
+        "Depth is not stated in the page text",
+        "Height is not stated in the page text",
+        "Seat depth is not stated in the page text"
+      ]
+    }
+  ]
+}

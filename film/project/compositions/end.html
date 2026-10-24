@@ -1,0 +1,66 @@
+<template>
+  <style>
+@font-face { font-family: 'Newsreader'; font-style: italic; font-weight: 400; font-display: block; src: url('assets/fonts/Newsreader-italic-400-latin-ext.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Newsreader'; font-style: italic; font-weight: 400; font-display: block; src: url('assets/fonts/Newsreader-italic-400-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Schibsted Grotesk'; font-style: normal; font-weight: 500; font-display: block; src: url('assets/fonts/SchibstedGrotesk-normal-500-latin-ext.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Schibsted Grotesk'; font-style: normal; font-weight: 500; font-display: block; src: url('assets/fonts/SchibstedGrotesk-normal-500-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Schibsted Grotesk'; font-style: normal; font-weight: 700; font-display: block; src: url('assets/fonts/SchibstedGrotesk-normal-700-latin-ext.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Schibsted Grotesk'; font-style: normal; font-weight: 700; font-display: block; src: url('assets/fonts/SchibstedGrotesk-normal-700-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Schibsted Grotesk'; font-style: normal; font-weight: 800; font-display: block; src: url('assets/fonts/SchibstedGrotesk-normal-800-latin-ext.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Schibsted Grotesk'; font-style: normal; font-weight: 800; font-display: block; src: url('assets/fonts/SchibstedGrotesk-normal-800-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+#root { position: absolute; inset: 0; overflow: hidden; font-family: 'Schibsted Grotesk', sans-serif; color: #17202b; }
+.abs { position: absolute; }
+.ground-linen { position: absolute; inset: 0; background: #eef1eb; }
+.floor { position: absolute; left: 0; right: 0; top: 770px; bottom: 0; background: #e2e7de; }
+.ground-grid { position: absolute; inset: 0; background-color: #fcfdfb;
+  background-image: linear-gradient(rgba(14,90,78,.06) 2px, transparent 2px), linear-gradient(90deg, rgba(14,90,78,.06) 2px, transparent 2px);
+  background-size: 32px 32px; }
+.mark-band { background-image: linear-gradient(transparent 38%, rgba(246,214,74,.62) 38%, rgba(246,214,74,.62) 94%, transparent 94%);
+  background-repeat: no-repeat; background-size: 0% 100%; padding: 0 4px; border-radius: 3px; }
+.title { font-weight: 800; letter-spacing: -0.03em; line-height: 1.0; }
+.w { display: inline-block; }
+.quote { font-family: 'Newsreader', serif; font-style: italic; }
+.mono { font-family: 'JetBrains Mono', monospace; }
+.card { background: #fff; border-radius: 24px; box-shadow: 0 30px 60px -30px rgba(23,32,43,.35); }
+.pill { position: absolute; background: #fff; border: 3px solid #0e5a4e; border-radius: 16px; padding: 10px 22px; font-size: 34px; font-weight: 500; white-space: nowrap; }
+.pill .k { color: #566170; font-weight: 500; }
+.pill.miss { border-color: #a9b2ab; border-style: dashed; color: #9a3b2e; }
+
+
+  </style>
+  <div id="root" data-composition-id="end" data-width="1920" data-height="1080">
+
+    <div class="ground-linen"></div>
+    <h1 id="en-claim" class="abs title" style="left:150px;top:330px;font-size:132px;width:1500px">
+      <span class="w">Every</span> <span class="w">fact,</span><br><span class="w">with</span> <span class="w">a</span> <span class="w"><span id="en-rec" class="mark-band">receipt.</span></span>
+    </h1>
+    <div id="en-card" class="abs" style="inset:0">
+      <svg id="en-mark" class="abs" viewBox="0 0 32 32" style="left:810px;top:250px;width:300px;height:300px;fill:#0e5a4e;overflow:visible">
+        <rect id="en-bar" x="3" y="20" width="26" height="4" rx="2"/>
+        <rect id="en-b1" x="6" y="9" width="8" height="10" rx="2"/>
+        <rect id="en-b2" x="16" y="5" width="10" height="14" rx="2"/>
+      </svg>
+      <p id="en-word" class="abs" style="left:0;right:0;top:560px;text-align:center;font-size:120px;font-weight:800;letter-spacing:-0.03em">AgentShelf</p>
+      <div id="en-cta" class="abs" style="left:660px;top:740px;width:600px;height:96px;border-radius:18px;background:#0e5a4e;color:#fff;display:flex;align-items:center;justify-content:center;font-size:38px;font-weight:500">Get a free AI shelf snapshot</div>
+    </div>
+
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+
+    gsap.set("#en-claim .w", { opacity: 0, filter: "blur(6px)" });
+    gsap.set(["#en-bar", "#en-b1", "#en-b2", "#en-word", "#en-cta"], { opacity: 0 });
+    tl.fromTo("#en-claim .w", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.13, stagger: 0.08 }, 0.2);
+    tl.fromTo("#en-rec", { backgroundSize: "0% 100%" }, { backgroundSize: "100% 100%", duration: 0.45, ease: "power2.inOut" }, 0.75);
+    tl.to("#en-claim", { opacity: 0, filter: "blur(8px)", duration: 0.22, ease: "power3.in" }, 2.2);
+    // the mark is performed: the shelf draws, two blocks land on it, the name wipes in
+    tl.fromTo("#en-bar", { opacity: 1, scaleX: 0, transformOrigin: "0% 50%" }, { opacity: 1, scaleX: 1, duration: 0.4, ease: "expo.out" }, 2.5);
+    tl.fromTo("#en-b1", { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.5, ease: "back.out(1.3)" }, 2.75);
+    tl.fromTo("#en-b2", { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.5, ease: "back.out(1.3)" }, 2.87);
+    tl.fromTo("#en-word", { opacity: 1, clipPath: "inset(0 100% 0 0)" }, { opacity: 1, clipPath: "inset(0 0% 0 0)", duration: 0.5, ease: "power2.inOut" }, 3.1);
+    tl.fromTo("#en-cta", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, 3.55);
+
+    window.__timelines["end"] = tl;
+  </script>
+</template>

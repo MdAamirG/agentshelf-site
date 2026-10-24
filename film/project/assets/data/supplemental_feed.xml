@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='utf-8'?>
+<rss xmlns:g="http://base.google.com/ns/1.0" version="2.0">
+  <channel>
+    <title>agentshelf supplemental feed</title>
+    <item>
+      <g:id>ARD-3S</g:id>
+      <g:product_width>213 cm</g:product_width>
+      <g:product_detail>
+        <g:section_name>Construction</g:section_name>
+        <g:attribute_name>Frame material</g:attribute_name>
+        <g:attribute_value>solid sheesham wood</g:attribute_value>
+      </g:product_detail>
+      <g:material>performance velvet</g:material>
+      <g:product_detail>
+        <g:section_name>Care</g:section_name>
+        <g:attribute_name>Stain resistance</g:attribute_name>
+        <g:attribute_value>stain-resistant, wipes clean</g:attribute_value>
+      </g:product_detail>
+      <g:product_detail>
+        <g:section_name>Warranty &amp; policies</g:section_name>
+        <g:attribute_name>Warranty</g:attribute_name>
+        <g:attribute_value>5 years on the frame</g:attribute_value>
+      </g:product_detail>
+      <g:product_detail>
+        <g:section_name>Delivery</g:section_name>
+        <g:attribute_name>Delivery time</g:attribute_name>
+        <g:attribute_value>7 to 10 days</g:attribute_value>
+      </g:product_detail>
+    </item>
+  </channel>
+</rss>
