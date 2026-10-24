@@ -1,0 +1,135 @@
+<template>
+  <style>
+@font-face { font-family: 'Newsreader'; font-style: italic; font-weight: 400; font-display: block; src: url('assets/fonts/Newsreader-italic-400-latin-ext.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Newsreader'; font-style: italic; font-weight: 400; font-display: block; src: url('assets/fonts/Newsreader-italic-400-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Schibsted Grotesk'; font-style: normal; font-weight: 500; font-display: block; src: url('assets/fonts/SchibstedGrotesk-normal-500-latin-ext.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Schibsted Grotesk'; font-style: normal; font-weight: 500; font-display: block; src: url('assets/fonts/SchibstedGrotesk-normal-500-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Schibsted Grotesk'; font-style: normal; font-weight: 700; font-display: block; src: url('assets/fonts/SchibstedGrotesk-normal-700-latin-ext.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Schibsted Grotesk'; font-style: normal; font-weight: 700; font-display: block; src: url('assets/fonts/SchibstedGrotesk-normal-700-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Schibsted Grotesk'; font-style: normal; font-weight: 800; font-display: block; src: url('assets/fonts/SchibstedGrotesk-normal-800-latin-ext.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Schibsted Grotesk'; font-style: normal; font-weight: 800; font-display: block; src: url('assets/fonts/SchibstedGrotesk-normal-800-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+#root { position: absolute; inset: 0; overflow: hidden; font-family: 'Schibsted Grotesk', sans-serif; color: #17202b; }
+.abs { position: absolute; }
+.ground-linen { position: absolute; inset: 0; background: #eef1eb; }
+.floor { position: absolute; left: 0; right: 0; top: 770px; bottom: 0; background: #e2e7de; }
+.ground-grid { position: absolute; inset: 0; background-color: #fcfdfb;
+  background-image: linear-gradient(rgba(14,90,78,.06) 2px, transparent 2px), linear-gradient(90deg, rgba(14,90,78,.06) 2px, transparent 2px);
+  background-size: 32px 32px; }
+.mark-band { background-image: linear-gradient(transparent 38%, rgba(246,214,74,.62) 38%, rgba(246,214,74,.62) 94%, transparent 94%);
+  background-repeat: no-repeat; background-size: 0% 100%; padding: 0 4px; border-radius: 3px; }
+.title { font-weight: 800; letter-spacing: -0.03em; line-height: 1.0; }
+.w { display: inline-block; }
+.quote { font-family: 'Newsreader', serif; font-style: italic; }
+.mono { font-family: 'JetBrains Mono', monospace; }
+.card { background: #fff; border-radius: 24px; box-shadow: 0 30px 60px -30px rgba(23,32,43,.35); }
+.pill { position: absolute; background: #fff; border: 3px solid #0e5a4e; border-radius: 16px; padding: 10px 22px; font-size: 34px; font-weight: 500; white-space: nowrap; }
+.pill .k { color: #566170; font-weight: 500; }
+.pill.miss { border-color: #a9b2ab; border-style: dashed; color: #9a3b2e; }
+
+
+.cg { position: absolute; left: 0; right: 0; bottom: 64px; text-align: center; overflow: visible; }
+.cg span { display: inline-block; max-width: 940px; background: rgba(23,32,43,.92); color: #fff; font-size: 44px; font-weight: 700;
+  line-height: 1.2; letter-spacing: -0.01em; padding: 10px 22px; border-radius: 14px; }
+
+  </style>
+  <div id="root" data-composition-id="captions" data-width="1080" data-height="1080">
+    <div id="cg0" class="cg"><span>A shopper asks an AI</span></div>
+    <div id="cg1" class="cg"><span>for a sofa.</span></div>
+    <div id="cg2" class="cg"><span>It can't see yours.</span></div>
+    <div id="cg3" class="cg"><span>It reads your page,</span></div>
+    <div id="cg4" class="cg"><span>and finds nothing.</span></div>
+    <div id="cg5" class="cg"><span>AgentShelf makes your products legible.</span></div>
+    <div id="cg6" class="cg"><span>We pull every fact</span></div>
+    <div id="cg7" class="cg"><span>an AI compares</span></div>
+    <div id="cg8" class="cg"><span>on from your pages,</span></div>
+    <div id="cg9" class="cg"><span>each one quoted</span></div>
+    <div id="cg10" class="cg"><span>in your own words.</span></div>
+    <div id="cg11" class="cg"><span>A claim that isn't</span></div>
+    <div id="cg12" class="cg"><span>on the page gets dropped.</span></div>
+    <div id="cg13" class="cg"><span>Your team approves the rest,</span></div>
+    <div id="cg14" class="cg"><span>and we publish it where</span></div>
+    <div id="cg15" class="cg"><span>Google and ChatGPT look.</span></div>
+    <div id="cg16" class="cg"><span>Now when shoppers ask,</span></div>
+    <div id="cg17" class="cg"><span>your sofa is</span></div>
+    <div id="cg18" class="cg"><span>in the answer,</span></div>
+    <div id="cg19" class="cg"><span>with its sources.</span></div>
+    <div id="cg20" class="cg"><span>That's AgentShelf.</span></div>
+    <div id="cg21" class="cg"><span>Proof behind every fact.</span></div>
+    <div id="cg22" class="cg"><span>Ask for your free snapshot.</span></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    gsap.set(".cg", { opacity: 0, visibility: "hidden" });
+    tl.set("#cg0", { opacity: 1, visibility: "visible" }, 0.25);
+    tl.to("#cg0", { opacity: 0, duration: 0.10, ease: "power2.in" }, 1.31);
+    tl.set("#cg0", { opacity: 0, visibility: "hidden" }, 1.41);
+    tl.set("#cg1", { opacity: 1, visibility: "visible" }, 1.43);
+    tl.to("#cg1", { opacity: 0, duration: 0.10, ease: "power2.in" }, 2.21);
+    tl.set("#cg1", { opacity: 0, visibility: "hidden" }, 2.31);
+    tl.set("#cg2", { opacity: 1, visibility: "visible" }, 2.33);
+    tl.to("#cg2", { opacity: 0, duration: 0.10, ease: "power2.in" }, 3.56);
+    tl.set("#cg2", { opacity: 0, visibility: "hidden" }, 3.66);
+    tl.set("#cg3", { opacity: 1, visibility: "visible" }, 3.68);
+    tl.to("#cg3", { opacity: 0, duration: 0.10, ease: "power2.in" }, 4.80);
+    tl.set("#cg3", { opacity: 0, visibility: "hidden" }, 4.90);
+    tl.set("#cg4", { opacity: 1, visibility: "visible" }, 4.92);
+    tl.to("#cg4", { opacity: 0, duration: 0.10, ease: "power2.in" }, 6.11);
+    tl.set("#cg4", { opacity: 0, visibility: "hidden" }, 6.21);
+    tl.set("#cg5", { opacity: 1, visibility: "visible" }, 6.89);
+    tl.to("#cg5", { opacity: 0, duration: 0.10, ease: "power2.in" }, 8.95);
+    tl.set("#cg5", { opacity: 0, visibility: "hidden" }, 9.05);
+    tl.set("#cg6", { opacity: 1, visibility: "visible" }, 10.04);
+    tl.to("#cg6", { opacity: 0, duration: 0.10, ease: "power2.in" }, 11.08);
+    tl.set("#cg6", { opacity: 0, visibility: "hidden" }, 11.18);
+    tl.set("#cg7", { opacity: 1, visibility: "visible" }, 11.20);
+    tl.to("#cg7", { opacity: 0, duration: 0.10, ease: "power2.in" }, 11.99);
+    tl.set("#cg7", { opacity: 0, visibility: "hidden" }, 12.09);
+    tl.set("#cg8", { opacity: 1, visibility: "visible" }, 12.11);
+    tl.to("#cg8", { opacity: 0, duration: 0.10, ease: "power2.in" }, 13.33);
+    tl.set("#cg8", { opacity: 0, visibility: "hidden" }, 13.43);
+    tl.set("#cg9", { opacity: 1, visibility: "visible" }, 13.45);
+    tl.to("#cg9", { opacity: 0, duration: 0.10, ease: "power2.in" }, 14.31);
+    tl.set("#cg9", { opacity: 0, visibility: "hidden" }, 14.41);
+    tl.set("#cg10", { opacity: 1, visibility: "visible" }, 14.43);
+    tl.to("#cg10", { opacity: 0, duration: 0.10, ease: "power2.in" }, 15.71);
+    tl.set("#cg10", { opacity: 0, visibility: "hidden" }, 15.81);
+    tl.set("#cg11", { opacity: 1, visibility: "visible" }, 15.83);
+    tl.to("#cg11", { opacity: 0, duration: 0.10, ease: "power2.in" }, 16.87);
+    tl.set("#cg11", { opacity: 0, visibility: "hidden" }, 16.97);
+    tl.set("#cg12", { opacity: 1, visibility: "visible" }, 16.99);
+    tl.to("#cg12", { opacity: 0, duration: 0.10, ease: "power2.in" }, 18.70);
+    tl.set("#cg12", { opacity: 0, visibility: "hidden" }, 18.80);
+    tl.set("#cg13", { opacity: 1, visibility: "visible" }, 18.82);
+    tl.to("#cg13", { opacity: 0, duration: 0.10, ease: "power2.in" }, 20.59);
+    tl.set("#cg13", { opacity: 0, visibility: "hidden" }, 20.69);
+    tl.set("#cg14", { opacity: 1, visibility: "visible" }, 20.71);
+    tl.to("#cg14", { opacity: 0, duration: 0.10, ease: "power2.in" }, 22.05);
+    tl.set("#cg14", { opacity: 0, visibility: "hidden" }, 22.15);
+    tl.set("#cg15", { opacity: 1, visibility: "visible" }, 22.17);
+    tl.to("#cg15", { opacity: 0, duration: 0.10, ease: "power2.in" }, 23.87);
+    tl.set("#cg15", { opacity: 0, visibility: "hidden" }, 23.97);
+    tl.set("#cg16", { opacity: 1, visibility: "visible" }, 26.63);
+    tl.to("#cg16", { opacity: 0, duration: 0.10, ease: "power2.in" }, 27.82);
+    tl.set("#cg16", { opacity: 0, visibility: "hidden" }, 27.92);
+    tl.set("#cg17", { opacity: 1, visibility: "visible" }, 27.94);
+    tl.to("#cg17", { opacity: 0, duration: 0.10, ease: "power2.in" }, 28.50);
+    tl.set("#cg17", { opacity: 0, visibility: "hidden" }, 28.60);
+    tl.set("#cg18", { opacity: 1, visibility: "visible" }, 28.62);
+    tl.to("#cg18", { opacity: 0, duration: 0.10, ease: "power2.in" }, 29.39);
+    tl.set("#cg18", { opacity: 0, visibility: "hidden" }, 29.49);
+    tl.set("#cg19", { opacity: 1, visibility: "visible" }, 29.51);
+    tl.to("#cg19", { opacity: 0, duration: 0.10, ease: "power2.in" }, 30.57);
+    tl.set("#cg19", { opacity: 0, visibility: "hidden" }, 30.67);
+    tl.set("#cg20", { opacity: 1, visibility: "visible" }, 33.05);
+    tl.to("#cg20", { opacity: 0, duration: 0.10, ease: "power2.in" }, 34.15);
+    tl.set("#cg20", { opacity: 0, visibility: "hidden" }, 34.25);
+    tl.set("#cg21", { opacity: 1, visibility: "visible" }, 34.27);
+    tl.to("#cg21", { opacity: 0, duration: 0.10, ease: "power2.in" }, 35.69);
+    tl.set("#cg21", { opacity: 0, visibility: "hidden" }, 35.79);
+    tl.set("#cg22", { opacity: 1, visibility: "visible" }, 35.81);
+    tl.to("#cg22", { opacity: 0, duration: 0.10, ease: "power2.in" }, 37.41);
+    tl.set("#cg22", { opacity: 0, visibility: "hidden" }, 37.51);
+    window.__timelines["captions"] = tl;
+  </script>
+</template>

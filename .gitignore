@@ -5,3 +5,6 @@ film/project/node_modules/
 film/project/renders/
 film/project/assets/audio/raw/
 film/project/.thumbnails/
+film/square/renders/
+film/square/.hyperframes/
+film/square/.thumbnails/

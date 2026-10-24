@@ -371,10 +371,6 @@ SCENES["end"] = scene("end", f"""
 
 TIMING = [("hook", 0, 6.6), ("reveal", 6.6, 3.0), ("proof", 9.6, 16.2), ("payoff", 25.8, 7.0), ("end", 32.8, 5.6)]
 
-(ROOT / "compositions").mkdir(exist_ok=True)
-for name, html in SCENES.items():
-    (ROOT / "compositions" / f"{name}.html").write_text(html, encoding="utf-8")
-
 # Voiceover: one Kokoro line per scene (assets/audio/narration.tsv). Volumes from normalize-audio (-16 LUFS).
 VOICE = [  # id, start (s), duration (s), volume
     ("vo-hook", 0.25, 6.04, 1.0),
@@ -383,39 +379,50 @@ VOICE = [  # id, start (s), duration (s), volume
     ("vo-payoff", 26.6, 4.14, 1.0),
     ("vo-end", 33.0, 4.59, 1.0),
 ]
-audio = "\n".join(
-    f'      <audio id="{i}" class="clip" src="assets/audio/{i}.wav" data-start="{st}" data-duration="{d}" data-volume="{v}" data-track-index="2"></audio>'
-    for i, st, d, v in VOICE
-)
 
-hosts = "\n".join(
-    f'      <div id="{n}" data-composition-id="{n}" data-composition-src="compositions/{n}.html" '
-    f'data-start="{s}" data-duration="{d}" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080"></div>'
-    for n, s, d in TIMING
-)
-total = TIMING[-1][1] + TIMING[-1][2]
-(ROOT / "index.html").write_text(f"""<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=1920, height=1080" />
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
-    <style>
-      * {{ margin: 0; padding: 0; box-sizing: border-box; }}
-      html, body {{ margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: #eef1eb; }}
-      #root {{ position: relative; width: 100%; height: 100%; }}
-    </style>
-  </head>
-  <body>
-    <div id="root" data-composition-id="main" data-start="0" data-duration="{total}" data-width="1920" data-height="1080">
-{hosts}
-{audio}
-    </div>
-    <script>
-      window.__timelines = window.__timelines || {{}};
-      window.__timelines["main"] = gsap.timeline({{ paused: true }});
-    </script>
-  </body>
-</html>
-""", encoding="utf-8")
-print("wrote", len(SCENES), "scenes; total", total, "s")
+
+def write():
+    (ROOT / "compositions").mkdir(exist_ok=True)
+    for name, html in SCENES.items():
+        (ROOT / "compositions" / f"{name}.html").write_text(html, encoding="utf-8")
+
+    audio = "\n".join(
+        f'      <audio id="{i}" class="clip" src="assets/audio/{i}.wav" data-start="{st}" data-duration="{d}" data-volume="{v}" data-track-index="2"></audio>'
+        for i, st, d, v in VOICE
+    )
+
+    hosts = "\n".join(
+        f'      <div id="{n}" data-composition-id="{n}" data-composition-src="compositions/{n}.html" '
+        f'data-start="{s}" data-duration="{d}" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080"></div>'
+        for n, s, d in TIMING
+    )
+    total = TIMING[-1][1] + TIMING[-1][2]
+    (ROOT / "index.html").write_text(f"""<!doctype html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=1920, height=1080" />
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+        <style>
+          * {{ margin: 0; padding: 0; box-sizing: border-box; }}
+          html, body {{ margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: #eef1eb; }}
+          #root {{ position: relative; width: 100%; height: 100%; }}
+        </style>
+      </head>
+      <body>
+        <div id="root" data-composition-id="main" data-start="0" data-duration="{total}" data-width="1920" data-height="1080">
+    {hosts}
+    {audio}
+        </div>
+        <script>
+          window.__timelines = window.__timelines || {{}};
+          window.__timelines["main"] = gsap.timeline({{ paused: true }});
+        </script>
+      </body>
+    </html>
+    """, encoding="utf-8")
+    print("wrote", len(SCENES), "scenes; total", total, "s")
+
+
+if __name__ == "__main__":
+    write()

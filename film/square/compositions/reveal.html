@@ -1,0 +1,63 @@
+<template>
+  <style>
+@font-face { font-family: 'Newsreader'; font-style: italic; font-weight: 400; font-display: block; src: url('assets/fonts/Newsreader-italic-400-latin-ext.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Newsreader'; font-style: italic; font-weight: 400; font-display: block; src: url('assets/fonts/Newsreader-italic-400-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Schibsted Grotesk'; font-style: normal; font-weight: 500; font-display: block; src: url('assets/fonts/SchibstedGrotesk-normal-500-latin-ext.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Schibsted Grotesk'; font-style: normal; font-weight: 500; font-display: block; src: url('assets/fonts/SchibstedGrotesk-normal-500-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Schibsted Grotesk'; font-style: normal; font-weight: 700; font-display: block; src: url('assets/fonts/SchibstedGrotesk-normal-700-latin-ext.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Schibsted Grotesk'; font-style: normal; font-weight: 700; font-display: block; src: url('assets/fonts/SchibstedGrotesk-normal-700-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Schibsted Grotesk'; font-style: normal; font-weight: 800; font-display: block; src: url('assets/fonts/SchibstedGrotesk-normal-800-latin-ext.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Schibsted Grotesk'; font-style: normal; font-weight: 800; font-display: block; src: url('assets/fonts/SchibstedGrotesk-normal-800-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+#root { position: absolute; inset: 0; overflow: hidden; font-family: 'Schibsted Grotesk', sans-serif; color: #17202b; }
+.abs { position: absolute; }
+.ground-linen { position: absolute; inset: 0; background: #eef1eb; }
+.floor { position: absolute; left: 0; right: 0; top: 770px; bottom: 0; background: #e2e7de; }
+.ground-grid { position: absolute; inset: 0; background-color: #fcfdfb;
+  background-image: linear-gradient(rgba(14,90,78,.06) 2px, transparent 2px), linear-gradient(90deg, rgba(14,90,78,.06) 2px, transparent 2px);
+  background-size: 32px 32px; }
+.mark-band { background-image: linear-gradient(transparent 38%, rgba(246,214,74,.62) 38%, rgba(246,214,74,.62) 94%, transparent 94%);
+  background-repeat: no-repeat; background-size: 0% 100%; padding: 0 4px; border-radius: 3px; }
+.title { font-weight: 800; letter-spacing: -0.03em; line-height: 1.0; }
+.w { display: inline-block; }
+.quote { font-family: 'Newsreader', serif; font-style: italic; }
+.mono { font-family: 'JetBrains Mono', monospace; }
+.card { background: #fff; border-radius: 24px; box-shadow: 0 30px 60px -30px rgba(23,32,43,.35); }
+.pill { position: absolute; background: #fff; border: 3px solid #0e5a4e; border-radius: 16px; padding: 10px 22px; font-size: 34px; font-weight: 500; white-space: nowrap; }
+.pill .k { color: #566170; font-weight: 500; }
+.pill.miss { border-color: #a9b2ab; border-style: dashed; color: #9a3b2e; }
+
+
+.pill { font-size: 30px; padding: 8px 18px; border-radius: 14px; }
+.wrap-pre { white-space: pre-wrap; word-break: break-word; }
+
+  </style>
+  <div id="root" data-composition-id="reveal" data-width="1080" data-height="1080">
+
+    <div class="ground-linen"></div><div id="rv-floor" class="floor" style="top:660px"></div>
+    <div id="rv-grid" class="ground-grid"></div>
+    <svg id="rv-ghost" viewBox="0 0 540 260" class="abs " style="overflow:visible"><g id="rv-ghost-frame"><rect x="66" y="22" width="404" height="112" rx="18" fill="none" stroke="#a9b2ab" stroke-width="3" vector-effect="non-scaling-stroke" stroke-dasharray="14 12"/><rect x="20" y="84" width="58" height="132" rx="22" fill="none" stroke="#a9b2ab" stroke-width="3" vector-effect="non-scaling-stroke" stroke-dasharray="14 12"/><rect x="458" y="84" width="58" height="132" rx="22" fill="none" stroke="#a9b2ab" stroke-width="3" vector-effect="non-scaling-stroke" stroke-dasharray="14 12"/><rect x="44" y="130" width="448" height="86" rx="14" fill="none" stroke="#a9b2ab" stroke-width="3" vector-effect="non-scaling-stroke" stroke-dasharray="14 12"/><rect x="68" y="216" width="14" height="22" rx="3" fill="none" stroke="#a9b2ab" stroke-width="3" vector-effect="non-scaling-stroke" stroke-dasharray="14 12"/><rect x="454" y="216" width="14" height="22" rx="3" fill="none" stroke="#a9b2ab" stroke-width="3" vector-effect="non-scaling-stroke" stroke-dasharray="14 12"/></g><g id="rv-ghost-cush"><rect x="76" y="34" width="126" height="92" rx="14" fill="none" stroke="#a9b2ab" stroke-width="3" vector-effect="non-scaling-stroke" stroke-dasharray="14 12"/><rect x="210" y="34" width="126" height="92" rx="14" fill="none" stroke="#a9b2ab" stroke-width="3" vector-effect="non-scaling-stroke" stroke-dasharray="14 12"/><rect x="344" y="34" width="116" height="92" rx="14" fill="none" stroke="#a9b2ab" stroke-width="3" vector-effect="non-scaling-stroke" stroke-dasharray="14 12"/><rect x="78" y="134" width="124" height="42" rx="10" fill="none" stroke="#a9b2ab" stroke-width="3" vector-effect="non-scaling-stroke" stroke-dasharray="14 12"/><rect x="210" y="134" width="124" height="42" rx="10" fill="none" stroke="#a9b2ab" stroke-width="3" vector-effect="non-scaling-stroke" stroke-dasharray="14 12"/><rect x="342" y="134" width="116" height="42" rx="10" fill="none" stroke="#a9b2ab" stroke-width="3" vector-effect="non-scaling-stroke" stroke-dasharray="14 12"/></g></svg>
+    <h1 id="rv-title" class="abs title" style="left:60px;top:80px;font-size:120px;width:960px">
+      <span class="w">Make</span> <span class="w">it</span><br><span class="w"><span id="rv-legible" class="mark-band">legible.</span></span>
+    </h1>
+    <div id="rv-lock" class="abs" style="left:60px;top:790px;display:flex;align-items:center;gap:20px">
+      <svg viewBox="0 0 32 32" style="width:68px;height:68px;fill:#0e5a4e"><rect x="3" y="20" width="26" height="4" rx="2"/><rect x="6" y="9" width="8" height="10" rx="2"/><rect x="16" y="5" width="10" height="14" rx="2"/></svg>
+      <span style="font-size:56px;font-weight:700;letter-spacing:-0.02em">AgentShelf</span>
+    </div>
+
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+
+    gsap.set("#rv-ghost", { left: 160, top: 300, width: 760, height: 366 });
+    gsap.set("#rv-title .w", { opacity: 0, color: "#c9cfc8" });
+    tl.fromTo("#rv-grid", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.inOut" }, 0.05);
+    tl.fromTo("#rv-floor", { opacity: 1 }, { opacity: 0, duration: 0.5, ease: "power2.inOut" }, 0.05);
+    tl.fromTo("#rv-ghost", { x: 0, y: 0, scale: 1, transformOrigin: "0% 0%" }, { x: 60, y: 160, scale: 0.842, duration: 0.7, ease: "power2.inOut" }, 0.1);
+    tl.fromTo("#rv-title .w", { opacity: 0, color: "#c9cfc8" }, { opacity: 1, color: "#17202b", duration: 0.18, stagger: 0.09 }, 0.55);
+    tl.fromTo("#rv-legible", { backgroundSize: "0% 100%" }, { backgroundSize: "100% 100%", duration: 0.45, ease: "power2.inOut" }, 1.15);
+    tl.fromTo("#rv-lock", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, 1.75);
+
+    window.__timelines["reveal"] = tl;
+  </script>
+</template>
