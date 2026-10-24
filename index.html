@@ -3,11 +3,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AgentShelf: AI can't see your sofa. It reads it.</title>
-  <meta name="description" content="AI shopping assistants choose products from facts they can read. AgentShelf finds the facts trapped in your images and PDFs, cites every one to its source, and publishes them where Google and ChatGPT look.">
-  <meta property="og:title" content="AI can't see your sofa. It reads it.">
-  <meta property="og:description" content="Make your products legible to AI shopping assistants, with a receipt for every fact.">
+  <title>AgentShelf: get your sofas found by Google’s AI</title>
+  <meta name="description" content="Shoppers now ask Google’s AI which sofa to buy. AgentShelf fixes the size, fabric, frame and warranty facts it can’t find on your product pages. You approve every one.">
+  <meta property="og:title" content="Google’s AI can’t find your sofa’s facts.">
+  <meta property="og:description" content="We fix the facts AI shopping assistants miss on your product pages. You approve every one. Free check in 3 days.">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mdaamirg.github.io/agentshelf-site/">
+  <meta property="og:image" content="https://mdaamirg.github.io/agentshelf-site/media/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="theme-color" content="#ffffff">
   <meta name="color-scheme" content="light">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -17,6 +22,9 @@
   <link rel="stylesheet" href="styles.css">
   <script src="config.js" defer></script>
   <script src="script.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js" defer></script>
+  <script src="motion.js" defer></script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -30,26 +38,26 @@
       <nav aria-label="Main">
         <a href="#reads">What AI reads</a>
         <a href="#how">How it works</a>
-        <a href="#receipts">Receipts</a>
+        <a href="#safe">Your store is safe</a>
         <a href="#pricing">Pricing</a>
-        <a href="#faq">FAQ</a>
       </nav>
-      <a class="btn btn-small" href="#snapshot">Get a free snapshot</a>
+      <a class="btn btn-small js-cta" href="#start">Free AI check</a>
     </div>
   </header>
 
   <main id="main">
-    <!-- HERO -->
+    <!-- 1. HERO: what we fix, for whom, one button -->
     <section class="hero" id="top" aria-labelledby="hero-title">
       <div class="wrap">
         <div class="hero-head">
-          <h1 id="hero-title">AI can't see your sofa. It reads it.</h1>
+          <h1 id="hero-title">Google’s AI can’t find <span class="hl">your sofa’s facts.</span></h1>
           <div class="hero-side">
-            <p class="lede">Shopping assistants pick products from facts written down on the page. When your dimensions, fabric and warranty live in images and PDFs, your sofa is missing from the answer. We make every fact legible, with a receipt.</p>
+            <p class="lede">Shoppers now ask Google’s AI which sofa to buy. We fix the size, fabric, frame and warranty facts it misses on your product pages. You approve every one.</p>
             <div class="cta-row">
-              <a class="btn" href="#snapshot">Get a free AI shelf snapshot</a>
-              <a class="btn btn-quiet" href="#reads">See what AI reads</a>
+              <a class="btn btn-large js-cta" href="#start">Get your free AI check</a>
+              <a class="text-link" href="#how">See how it works</a>
             </div>
+            <p class="fine">Free. Results in 3 working days. No access to your store needed.</p>
           </div>
         </div>
 
@@ -64,13 +72,18 @@
                   <p>Dimensions: <mark data-link="width">W&nbsp;213&nbsp;cm × D&nbsp;92&nbsp;cm × H&nbsp;84&nbsp;cm</mark></p>
                   <p>Frame: <mark data-link="frame">solid sheesham wood</mark>. Warranty: <mark data-link="warranty">5&nbsp;years on the frame</mark>.</p>
                   <div class="beam" aria-hidden="true"></div>
+                  <div class="scan" aria-hidden="true"></div>
                 </div>
               </article>
 
               <div class="answer" aria-live="polite">
                 <p class="answer-q">&ldquo;Stain-resistant 3-seater under ₹60,000, good with a dog?&rdquo;</p>
                 <p class="answer-a"><strong>Arden 3-seater sofa</strong> fits: 213&nbsp;cm wide, stain-resistant performance velvet that wipes clean, solid sheesham frame with a 5-year warranty.</p>
-                <p class="answer-cite"><span>Sources</span><a href="#receipts">[1] product page</a><a href="#receipts">[2] Merchant Center</a></p>
+                <p class="answer-cite"><span>Sources</span><a href="#how">[1] product page</a><a href="#how">[2] Merchant Center</a></p>
+              </div>
+              <div class="feed" hidden aria-hidden="true">
+                <p class="feed-title">Merchant Center feed</p>
+                <code class="feed-code"><span class="feed-row">product_width: <b>213 cm</b></span><span class="feed-row">material: <b>performance velvet</b></span><span class="feed-row is-thread">frame: <b>solid sheesham wood</b></span><span class="feed-row">warranty: <b>5 years on frame</b></span></code>
               </div>
             </div>
 
@@ -78,7 +91,6 @@
               <svg class="sofa sofa-full" viewBox="0 0 760 420" role="img" aria-labelledby="sofa-title sofa-desc">
                 <title id="sofa-title">Front view drawing of the Arden 3-seater sofa</title>
                 <desc id="sofa-desc">Annotated with its facts: performance velvet upholstery, 213 centimetres wide, solid sheesham frame, and a 5-year frame warranty on a swing tag.</desc>
-                <!-- sofa, front view -->
                 <g class="body" transform="translate(214 -10) scale(0.86)">
                   <rect x="166" y="132" width="404" height="112" rx="18"/>
                   <rect class="cushion" x="176" y="144" width="126" height="92" rx="14"/>
@@ -93,9 +105,7 @@
                   <rect x="168" y="326" width="14" height="22" rx="3"/>
                   <rect x="554" y="326" width="14" height="22" rx="3"/>
                 </g>
-                <!-- width dimension -->
                 <path class="dim-line" d="M317 336 H744 M317 326 V346 M744 326 V346"/>
-                <!-- annotation column, top to bottom in the order the page states them -->
                 <g class="callout" data-anchor="fabric">
                   <g transform="translate(0 40)"><rect width="236" height="42" rx="21"/>
                   <text x="18" y="27"><tspan class="k">Upholstery </tspan><tspan class="q">?</tspan><tspan class="v">perf. velvet</tspan></text></g>
@@ -146,7 +156,8 @@
           <svg class="links" aria-hidden="true"></svg>
 
           <figcaption class="title-strip">
-            <span id="sheet-caption">Sheet 1: Arden 3-seater, front view. Every fact on the drawing is quoted from the page on the left.</span>
+            <span id="sheet-caption">Facts written on the page get found and quoted. Facts stuck in photos and PDFs don’t.</span>
+            <ol class="stage-strip" hidden aria-hidden="true"><li>Read the page</li><li>Quote the source</li><li>Write the feed</li><li>AI answers, with a source</li></ol>
             <span class="controls">
               <button type="button" class="ctl" id="play-toggle" aria-pressed="false">Pause</button>
               <button type="button" class="ctl" id="replay">Replay</button>
@@ -156,26 +167,22 @@
       </div>
     </section>
 
-    <!-- THE SHIFT -->
-    <section class="shift" aria-labelledby="shift-title">
-      <div class="wrap shift-grid">
-        <h2 id="shift-title">Shoppers stopped scrolling. They ask.</h2>
-        <div>
-          <p class="big">&ldquo;Best stain-resistant 3-seater under ₹60,000 for a home with a dog&rdquo; is a question no filter menu answers, and AI assistants now answer it in one reply. They compare products on written facts, and they cite where each fact came from.</p>
-          <p class="stat">In July 2026, visits to US retail sites referred by AI assistants were up 62% on a year earlier, and they converted better than other traffic. <a href="https://www.digitalcommerce360.com/2026/08/19/adobe-ai-referral-traffic-data-july-2026/" rel="noopener" target="_blank">Adobe data via Digital Commerce 360</a></p>
-        </div>
-      </div>
-    </section>
-
-    <!-- COMPARE -->
+    <!-- 2. THE GAP -->
     <section class="reads band-linen" id="reads" aria-labelledby="reads-title">
       <div class="wrap">
-        <h2 id="reads-title">Same product page. Two very different readers.</h2>
-        <p class="section-lede">The same listing, rendered for two readers. Drag the handle to compare what a shopper sees with what an AI can actually read.</p>
+        <div class="section-head">
+          <h2 id="reads-title">Same sofa page. <span class="hl">Two very different readers.</span></h2>
+          <p class="section-lede">Your shopper sees a photo, a price and a dimension chart. Google’s AI only reads the words. If the width, fabric and warranty are in an image or a PDF, the AI can’t recommend you for them.</p>
+        </div>
 
-        <div class="compare" style="--pos: 50%">
+        <div class="view-toggle" role="group" aria-label="Choose a reader">
+          <button type="button" class="vt" data-pos="100" aria-pressed="true">What a shopper sees</button>
+          <button type="button" class="vt" data-pos="0" aria-pressed="false">What the AI reads</button>
+        </div>
+
+        <div class="compare" style="--pos: 100%">
           <div class="pane pane-ai" aria-hidden="true">
-            <span class="pane-label">What an AI reads</span>
+            <span class="pane-label">What the AI reads</span>
             <div class="listing">
               <div class="listing-img ai-img"><span>[image]</span><span>Sofa photo and dimension chart. No readable text.</span></div>
               <div class="listing-body ai-body">
@@ -186,6 +193,7 @@
                 <p class="ai-gap">[spec-sheet.pdf, not followed]</p>
                 <dl class="ai-facts">
                   <div><dt>Width</dt><dd class="miss">unknown</dd></div>
+                  <div class="thread"><dt>Frame</dt><dd class="miss">unknown</dd></div>
                   <div><dt>Fabric</dt><dd class="miss">unknown</dd></div>
                   <div><dt>Stain resistant</dt><dd class="miss">unknown</dd></div>
                   <div><dt>Warranty</dt><dd class="miss">unknown</dd></div>
@@ -222,55 +230,31 @@
               </div>
             </div>
           </div>
-          <span class="divider" aria-hidden="true"><span class="knob"></span></span>
-          <label class="sr-only" for="compare-range">Compare what a shopper sees with what an AI can read</label>
-          <input class="range" id="compare-range" type="range" min="0" max="100" value="50" aria-valuetext="50% shopper view">
         </div>
-        <p class="compare-text sr-only">A shopper sees a photo, a price, a colour swatch and lifestyle copy. An AI reading the same page gets the name, price and delivery time, but width, fabric, stain resistance, frame and warranty are unknown because they are only in an image and a PDF.</p>
+        <p class="lens-hint" aria-hidden="true">Move your mouse over the page to see it through the AI’s eyes.</p>
+        <p class="compare-text sr-only">A shopper sees a photo, a price, colour swatches and lifestyle copy. An AI reading the same page gets the name and price, but width, fabric, stain resistance and warranty are unknown because they are only in an image and a PDF.</p>
       </div>
     </section>
 
-    <!-- HOW -->
+    <!-- 3. HOW IT WORKS: 3 steps + the receipt -->
     <section class="how" id="how" aria-labelledby="how-title">
-      <div class="wrap">
-        <h2 id="how-title">From hidden to legible in four steps</h2>
-        <ol class="steps">
-          <li>
-            <svg class="step-ic" viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="10" width="36" height="28" rx="4"/><path d="M14 20h20M14 27h12"/><circle cx="36" cy="34" r="7"/><path d="m41 39 4 4"/></svg>
-            <h3>See your shelf</h3>
-            <p>We ask AI assistants the questions your shoppers ask, many times over, and show how often you appear next to the brands you compete with.</p>
-          </li>
-          <li>
-            <svg class="step-ic" viewBox="0 0 48 48" aria-hidden="true"><rect x="8" y="6" width="26" height="36" rx="3"/><path d="M14 16h14M14 23h14M14 30h8"/><path class="hl" d="M13 22.5h16"/></svg>
-            <h3>Find the facts</h3>
-            <p>We read your product pages, images and spec sheets and pull out the facts assistants compare on. Each one comes with the exact words it came from.</p>
-          </li>
-          <li>
-            <svg class="step-ic" viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="8" width="36" height="32" rx="4"/><path d="M6 18h36M18 18v22"/><path d="m24 29 4 4 8-9"/></svg>
-            <h3>You approve</h3>
-            <p>Your team reviews every fact in a simple sheet: approve, correct or reject. Claims about materials, stains, pets and warranty get extra care.</p>
-          </li>
-          <li>
-            <svg class="step-ic" viewBox="0 0 48 48" aria-hidden="true"><path d="M8 36h32"/><rect x="12" y="20" width="8" height="16" rx="2"/><rect x="24" y="12" width="10" height="24" rx="2"/><path d="M30 6l6 6-6 6"/></svg>
-            <h3>Publish and measure</h3>
-            <p>We hand your team or agency a Merchant Center feed and product markup to upload, then re-run the same questions to show what changed.</p>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <!-- RECEIPTS -->
-    <section class="receipts band-linen" id="receipts" aria-labelledby="receipts-title">
-      <div class="wrap receipts-grid">
+      <div class="wrap how-grid">
         <div>
-          <h2 id="receipts-title">Every fact has a receipt</h2>
-          <p class="section-lede">A wrong &ldquo;stain-resistant&rdquo; claim can get a product disapproved on Google. So nothing we extract is trusted on its own word.</p>
-          <ul class="checks">
-            <li><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>If the quote isn't word for word on your page, the fact is dropped, automatically.</li>
-            <li><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Our bar for claim facts is 98% measured accuracy before anything ships.</li>
-            <li><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>You approve every fact. Your team or agency does the upload.</li>
-            <li><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>We never ask for your passwords.</li>
-          </ul>
+          <h2 id="how-title">We write down what your photos and PDFs <span class="hl">already say</span></h2>
+          <ol class="steps">
+            <li>
+              <h3>We read your pages</h3>
+              <p>Product pages, photos, dimension charts and spec-sheet PDFs. We pull out the facts shoppers ask AI about: size, fabric, frame, fill, warranty, delivery.</p>
+            </li>
+            <li>
+              <h3>We quote the source</h3>
+              <p>Every fact comes with the <mark>exact words it came from</mark>, like a receipt. If the words aren’t on your page, the fact is dropped. No guesses, no made-up claims.</p>
+            </li>
+            <li>
+              <h3>You approve, your team publishes</h3>
+              <p>You approve, correct or reject each fact in one simple sheet. We hand your team or agency a ready-to-upload Google Merchant Center feed and page markup.</p>
+            </li>
+          </ol>
         </div>
         <article class="receipt" aria-label="Sample receipt for one fact">
           <div class="receipt-top">
@@ -279,23 +263,23 @@
           </div>
           <dl>
             <div><dt>Fact</dt><dd>Frame material</dd></div>
-            <div><dt>Value</dt><dd><strong>Solid sheesham wood</strong></dd></div>
-            <div><dt>Source</dt><dd class="src">example.com/products/arden-3-seater</dd></div>
-            <div><dt>Quote</dt><dd><q>Frame: <mark>solid sheesham wood</mark>. Warranty: 5&nbsp;years on the frame.</q></dd></div>
-            <div><dt>Published as</dt><dd>Merchant Center product detail, Product markup</dd></div>
+            <div><dt>Value</dt><dd><button type="button" class="trace" data-trace-to="receipt-quote"><strong>Solid sheesham wood</strong><span class="trace-hint">Tap to see where it came from</span></button></dd></div>
+            <div><dt>Found on</dt><dd class="src">example.com/products/arden-3-seater</dd></div>
+            <div><dt>Exact words</dt><dd><q>Frame: <mark id="receipt-quote">solid sheesham wood</mark>. Warranty: 5&nbsp;years on the frame.</q></dd></div>
+            <div><dt>Sent to</dt><dd>Google Merchant Center and your product page</dd></div>
           </dl>
           <div class="receipt-perf" aria-hidden="true"></div>
-          <p class="receipt-note">Sample with a fictional brand.</p>
+          <p class="receipt-note">Sample receipt. The brand is fictional.</p>
         </article>
       </div>
     </section>
 
-    <!-- FILM (shown when config.film is set) -->
+    <!-- 4. FILM -->
     <section class="film" id="film" aria-labelledby="film-title" hidden>
       <div class="wrap film-grid">
-        <div>
-          <h2 id="film-title">See it in 38 seconds</h2>
-          <p class="section-lede">How a product page becomes something an AI can recommend, narrated, and shown with the real output of the engine. Captions included.</p>
+        <div class="film-copy">
+          <h2 id="film-title">See it work in <span class="hl">38 seconds</span></h2>
+          <p class="section-lede">One sofa page, from facts hidden in a photo to a cited answer from the AI. Narrated, with captions, using the engine’s real output.</p>
         </div>
         <button type="button" class="film-open" id="film-open" aria-haspopup="dialog">
           <img class="film-poster" alt="" width="1920" height="1080" loading="lazy" decoding="async">
@@ -310,97 +294,126 @@
       </dialog>
     </section>
 
-    <!-- LIMITS -->
-    <section class="limits" aria-labelledby="limits-title">
-      <div class="wrap limits-grid">
-        <h2 id="limits-title">What we won't promise</h2>
-        <div class="limits-copy">
-          <p>Nobody can guarantee a spot in an AI answer, and anyone who does is guessing. Answers change from one question to the next, so we never judge your shelf by a single screenshot. We run every question several times and report the range.</p>
-          <p>What we can promise: your products will be described completely and accurately, in the places assistants read, with a source for every claim.</p>
+    <!-- 5. NOTHING GOES LIVE WITHOUT YOU -->
+    <section class="safe band-linen" id="safe" aria-labelledby="safe-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="safe-title">Nothing goes live <span class="hl">without you</span></h2>
+          <p class="section-lede">The question every founder asks first is “will this break my store?” It can’t. Here is exactly what we touch.</p>
         </div>
+        <div class="approval" data-ui>
+          <div class="approval-top">
+            <p class="approval-title">Approval sheet: Arden 3-seater sofa</p>
+            <p class="approval-status"><span class="js-approved">5</span> of 5 approved by your team</p>
+          </div>
+          <table>
+            <caption class="sr-only">Sample approval sheet: each fact, its value, the exact words on the page, and approval</caption>
+            <thead><tr><th scope="col">Fact</th><th scope="col">Value</th><th scope="col" class="q-col">Exact words on your page</th><th scope="col" class="ok">Approve</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Width</th><td class="val">213 cm</td><td class="q-col"><q>W 213 cm × D 92 cm × H 84 cm</q></td><td class="ok"><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10.5"/><path d="M7.2 12.4l3.2 3.2 6.4-6.8"/></svg><span class="sr-only">Approved</span></td></tr>
+              <tr><th scope="row">Upholstery</th><td class="val">performance velvet</td><td class="q-col"><q>upholstered in stain-resistant performance velvet</q></td><td class="ok"><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10.5"/><path d="M7.2 12.4l3.2 3.2 6.4-6.8"/></svg><span class="sr-only">Approved</span></td></tr>
+              <tr><th scope="row">Stain resistance</th><td class="val">stain-resistant, wipes clean</td><td class="q-col"><q>stain-resistant performance velvet that wipes clean</q></td><td class="ok"><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10.5"/><path d="M7.2 12.4l3.2 3.2 6.4-6.8"/></svg><span class="sr-only">Approved</span></td></tr>
+              <tr><th scope="row">Warranty</th><td class="val">5 years on the frame</td><td class="q-col"><q>Warranty: 5 years on the frame</q></td><td class="ok"><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10.5"/><path d="M7.2 12.4l3.2 3.2 6.4-6.8"/></svg><span class="sr-only">Approved</span></td></tr>
+              <tr class="is-thread"><th scope="row">Frame material</th><td class="val"><mark>solid sheesham wood</mark></td><td class="q-col"><q>Frame: solid sheesham wood</q></td><td class="ok"><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10.5"/><path d="M7.2 12.4l3.2 3.2 6.4-6.8"/></svg><span class="sr-only">Approved</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <ul class="safe-list">
+          <li><h3>No passwords</h3><p>We work from your public product pages. We never log in to your store or your Google account.</p></li>
+          <li><h3>Your sign-off on every fact</h3><p>You see each fact next to the words it came from, and only approved facts are delivered.</p></li>
+          <li><h3>Your team uploads</h3><p>We hand over a feed file and markup. Nothing on your site changes until your team or agency puts it there.</p></li>
+          <li><h3>About two weeks</h3><p>From your go-ahead to a ready feed for 20 products. An afternoon of your team’s time for approvals.</p></li>
+          <li><h3>No ranking promises</h3><p>Nobody can guarantee a spot in an AI answer. We make sure your facts are complete and correct where AI reads them, then check again after four weeks.</p></li>
+        </ul>
       </div>
     </section>
 
-    <!-- PRICING -->
-    <section class="pricing band-linen" id="pricing" aria-labelledby="pricing-title">
+    <!-- 6. PRICING -->
+    <section class="pricing" id="pricing" aria-labelledby="pricing-title">
       <div class="wrap">
-        <h2 id="pricing-title">Start free, pay when it's useful</h2>
+        <div class="section-head">
+          <h2 id="pricing-title">Start free. <span class="hl">Pay when it’s useful.</span></h2>
+          <p class="section-lede">The check costs nothing and takes 3 working days. You only pay once you’ve seen exactly which facts are missing.</p>
+        </div>
         <div class="tiers">
           <div class="tier">
-            <h3>AI shelf snapshot</h3>
+            <h3>AI check</h3>
             <p class="price">Free</p>
-            <p>A one-page view of what AI assistants recommend for your category, how often you appear, and the facts missing from your top 3 products.</p>
+            <p>We ask Google’s AI the questions your shoppers ask, and show which facts it can’t find on your top 3 products. In 3 working days.</p>
+            <a class="btn btn-quiet js-cta" data-subject="Free AI check" href="#start">Get the free check</a>
           </div>
           <div class="tier tier-feature">
             <h3>Pilot fix</h3>
             <p class="price">Free <span>for 2 brands this month</span></p>
-            <p>We extract and verify the facts for your top 20 products and prepare the feed and markup. In return, we share the before and after, anonymised.</p>
+            <p>We find, quote and verify the facts for your top 20 products and prepare the feed and markup. In return, we share the before and after, without your name.</p>
+            <a class="btn btn-invert js-cta" data-subject="Pilot fix request" href="#start">Apply for the pilot</a>
           </div>
           <div class="tier">
-            <h3>Full audit</h3>
-            <p class="price">From ₹25,000 <span>or $750 outside India</span></p>
-            <p>30 to 50 products, a fact-by-fact gap scorecard with sources, the shelf comparison, and a prioritised fix list.</p>
+            <h3>Full fix</h3>
+            <p class="price">₹25,000 <span>one time, 30 to 50 products</span></p>
+            <p>Every fact for your range with its source, the feed and markup ready to upload, and a re-check four weeks later.</p>
+            <a class="btn btn-quiet js-cta" data-subject="Full fix enquiry" href="#start">Ask about the full fix</a>
           </div>
         </div>
-        <p class="agencies"><strong>Running stores for several brands?</strong> Agencies can run AgentShelf under their own name for their clients, with per-brand pricing from ₹15,000. <a href="#snapshot">Ask about an agency pilot</a></p>
+        <p class="agencies"><strong>Run stores for several brands?</strong> Agencies can offer AgentShelf under their own name, from ₹15,000 per brand. <a class="js-cta" data-subject="Agency pilot" href="#start">Talk to us about an agency pilot</a></p>
       </div>
     </section>
 
-    <!-- FAQ -->
-    <section class="faq" id="faq" aria-labelledby="faq-title">
+    <!-- 7. FAQ -->
+    <section class="faq band-linen" id="faq" aria-labelledby="faq-title">
       <div class="wrap faq-grid">
-        <h2 id="faq-title">Questions brands ask</h2>
+        <h2 id="faq-title">Questions founders ask</h2>
         <div class="faq-list">
           <details>
             <summary>Does this work in India?</summary>
-            <p>Yes, for Google: AI Mode and Gemini read product data from Google Merchant Center, and that is live in India. ChatGPT's shopping results are currently US-focused, so for Indian brands we only promise Google.</p>
+            <p>Yes. Google’s AI Mode and Gemini read product data from Google Merchant Center, and that is live in India. ChatGPT’s shopping results are US-focused for now, so for Indian brands we focus on Google.</p>
           </details>
           <details>
-            <summary>Will ChatGPT or Google definitely recommend us after this?</summary>
-            <p>No one can promise that. We make sure your products are described completely and accurately where assistants look, and we measure your shelf before and after with the same questions.</p>
+            <summary>What if a fact comes out wrong?</summary>
+            <p>Every fact carries the exact sentence it came from, and nothing is delivered until your team approves it. If the words aren’t on your page, the fact is dropped before you ever see it.</p>
           </details>
           <details>
-            <summary>What if you extract a fact wrong?</summary>
-            <p>Every fact carries the exact sentence it came from, and nothing is published until your team approves it. If a quote isn't on your page word for word, the fact is dropped before you ever see it.</p>
+            <summary>We already have an SEO agency.</summary>
+            <p>Good. This is product data, not content writing, and it fits alongside their work. Many of our conversations start with the agency.</p>
           </details>
           <details>
-            <summary>Do you need access to our store or Merchant Center?</summary>
-            <p>No. We work from your public pages and hand the feed and markup to your team or agency to upload. We never ask for passwords.</p>
+            <summary>Does it work with Shopify?</summary>
+            <p>Yes, and with WooCommerce or a custom site. The output is a standard Merchant Center feed and product markup, which every platform accepts.</p>
           </details>
           <details>
-            <summary>We already work with an SEO agency.</summary>
-            <p>Good. This is product data work, not content writing, and it fits alongside them. Many of our conversations start with the agency.</p>
+            <summary>How soon will we see a difference?</summary>
+            <p>Google takes a few weeks to pick up new feed data, so we check again about four weeks after your upload, asking the same questions as before.</p>
           </details>
         </div>
       </div>
     </section>
 
-    <!-- FOUNDER -->
-    <section class="founder band-linen" aria-labelledby="founder-title">
-      <div class="wrap founder-grid">
-        <div class="monogram" aria-hidden="true">MA</div>
-        <div>
-          <h2 id="founder-title">Who's behind this</h2>
-          <p>I'm Mohamed Aamir, a machine learning engineer in Chennai. Before AgentShelf I built speech recognition and deepfake-audio detection systems, which is mostly the craft of not trusting a model's output until you can check it. AgentShelf applies that to product data. The extraction engine is being released as open source, so you can see exactly how it works.</p>
+    <!-- 8. FOUNDER + CTA -->
+    <section class="start" id="start" aria-labelledby="start-title">
+      <div class="wrap"><div class="start-box">
+        <div class="start-copy">
+          <h2 id="start-title">See what Google’s AI <span class="sweep">can’t find</span> on your pages</h2>
+          <p>Send your store’s address and the products you care about most. In 3 working days you get a one-page check: the questions shoppers ask, and which of your facts the AI is missing.</p>
+          <div class="start-actions">
+            <a class="btn btn-large js-cta" href="#start">Get your free AI check</a>
+            <a class="btn btn-ghost js-wa" href="#start" hidden rel="noopener" target="_blank">Message on WhatsApp</a>
+          </div>
+          <p class="fine js-cta-missing">The request form is being set up. Until then, reach Mohamed on <a href="https://github.com/MdAamirG" rel="noopener" target="_blank">GitHub</a>.</p>
+          <p class="fine">No sales sequence. If it isn’t useful, reply “no” and that’s the end of it.</p>
+        </div>
+        <aside class="founder" aria-label="Who you’ll talk to">
+          <div class="founder-head">
+            <img class="founder-photo js-photo" alt="Mohamed Aamir" width="88" height="88" hidden>
+            <div class="monogram js-monogram" aria-hidden="true">MA</div>
+            <div>
+              <p class="founder-name">Mohamed Aamir</p>
+              <p class="founder-role">Founder, Chennai</p>
+            </div>
+          </div>
+          <p>I’m a machine learning engineer. Before AgentShelf I built speech recognition and deepfake-audio detection, which is mostly the craft of not trusting a model until you can check it. That’s why every fact here comes with a receipt.</p>
           <p class="founder-links"><a href="https://github.com/MdAamirG" rel="noopener" target="_blank">GitHub</a><a class="js-linkedin" href="#" hidden rel="noopener" target="_blank">LinkedIn</a></p>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="snapshot" id="snapshot" aria-labelledby="snapshot-title">
-      <div class="wrap snapshot-box">
-        <div>
-          <h2 id="snapshot-title">Find out what AI reads on your pages</h2>
-          <p>Send your store's address and the products you care about most. Within 3 working days you'll get a one-page snapshot of what AI assistants say in your category, and where your product facts have gaps.</p>
-        </div>
-        <div class="snapshot-actions">
-          <a class="btn btn-large js-mail" href="#snapshot">Request a free snapshot</a>
-          <a class="btn btn-quiet js-cal" href="#" hidden>Or book a 20-minute call</a>
-          <p class="fine js-mail-missing">Contact details are being set up.</p>
-          <p class="fine">No sales sequence. If it isn't useful, reply &ldquo;no&rdquo; and that's the end of it.</p>
-        </div>
-      </div>
+        </aside>
+      </div></div>
     </section>
   </main>
 
@@ -408,8 +421,14 @@
     <div class="wrap footer-row">
       <span><span translate="no">AgentShelf</span>, Chennai</span>
       <span>This site uses no cookies and no trackers.</span>
-      <a class="js-mail-plain" href="#snapshot">Email us</a>
+      <a class="js-mail-plain" href="#start">Email us</a>
     </div>
   </footer>
+
+  <!-- Mobile: the action stays within thumb reach -->
+  <div class="sticky-cta" aria-hidden="true">
+    <a class="btn js-cta" href="#start" tabindex="-1">Free AI check</a>
+    <a class="btn btn-wa js-wa" href="#start" hidden rel="noopener" target="_blank" tabindex="-1">WhatsApp</a>
+  </div>
 </body>
 </html>

@@ -2,18 +2,40 @@
   const cfg = window.AGENTSHELF || {};
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* ---------- Contact links from config.js ---------- */
-  const subject = encodeURIComponent("AI shelf snapshot request");
-  const body = encodeURIComponent("Store website:\nProducts you care about most:\nYour role:\n");
-  if (cfg.email) {
-    document.querySelectorAll(".js-mail").forEach((a) => { a.href = `mailto:${cfg.email}?subject=${subject}&body=${body}`; });
-    document.querySelectorAll(".js-mail-plain").forEach((a) => { a.href = `mailto:${cfg.email}`; });
-    document.querySelectorAll(".js-mail-missing").forEach((p) => { p.hidden = true; });
+  /* ---------- Contact: form, email or WhatsApp, from config.js ---------- */
+  // ?ref=brand-or-campaign on a cold-email link travels into the request, so you know which email worked.
+  const params = new URLSearchParams(location.search);
+  const ref = (params.get("ref") || params.get("utm_campaign") || "").slice(0, 60);
+  const ctas = document.querySelectorAll(".js-cta");
+  let wired = false;
+  if (cfg.form) {
+    const url = new URL(cfg.form, location.href);
+    if (ref) url.searchParams.set("ref", ref);
+    ctas.forEach((a) => { a.href = url.toString(); a.target = "_blank"; a.rel = "noopener"; });
+    wired = true;
+  } else if (cfg.email) {
+    const body = encodeURIComponent(`Store website:\nProducts you care about most:\nYour role:\n${ref ? `\nRef: ${ref}\n` : ""}`);
+    ctas.forEach((a) => {
+      const subject = encodeURIComponent(a.dataset.subject || "Free AI check");
+      a.href = `mailto:${cfg.email}?subject=${subject}&body=${body}`;
+    });
+    wired = true;
   }
-  const cal = document.querySelector(".js-cal");
-  if (cal && cfg.calendar) { cal.href = cfg.calendar; cal.hidden = false; }
+  if (cfg.email) document.querySelectorAll(".js-mail-plain").forEach((a) => { a.href = `mailto:${cfg.email}`; });
+  if (cfg.whatsapp) {
+    const text = encodeURIComponent(`Hi Mohamed, I'd like a free AI check for my store.${ref ? ` (ref: ${ref})` : ""}`);
+    document.querySelectorAll(".js-wa").forEach((a) => { a.href = `https://wa.me/${String(cfg.whatsapp).replace(/\D/g, "")}?text=${text}`; a.hidden = false; });
+    wired = true;
+  }
+  if (wired) document.querySelectorAll(".js-cta-missing").forEach((p) => { p.hidden = true; });
   const li = document.querySelector(".js-linkedin");
   if (li && cfg.linkedin) { li.href = cfg.linkedin; li.hidden = false; }
+  const photo = document.querySelector(".js-photo");
+  if (photo && cfg.photo) {
+    photo.src = cfg.photo; photo.hidden = false;
+    const mono = document.querySelector(".js-monogram");
+    if (mono) mono.hidden = true;
+  }
 
   /* ---------- Hero sheet: highlight -> connector -> callout ---------- */
   const sheet = document.getElementById("sheet");
@@ -59,7 +81,9 @@
   const answer = sheet && sheet.querySelector(".answer");
 
   function finish() {
-    sheet.classList.remove("is-before", "is-paused");
+    // Clearing is-playing leaves the same finished look but releases the highlights, lines and cards
+    // from their CSS animations, so the scroll scene in motion.js can drive them.
+    sheet.classList.remove("is-before", "is-paused", "is-playing");
     if (toggle) { toggle.disabled = true; toggle.textContent = "Pause"; toggle.setAttribute("aria-pressed", "false"); }
   }
   function play() {
@@ -95,34 +119,46 @@
     window.addEventListener("resize", () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(drawLinks); });
   }
 
-  /* ---------- Compare slider ---------- */
+  /* ---------- Shopper vs AI: a two-way toggle (desktop also gets the X-ray lens in motion.js) ---------- */
   const compare = document.querySelector(".compare");
-  const range = document.getElementById("compare-range");
-  if (compare && range) {
-    const update = () => {
-      compare.style.setProperty("--pos", `${range.value}%`);
-      range.setAttribute("aria-valuetext", `${range.value}% shopper view, ${100 - range.value}% AI view`);
+  const viewButtons = [...document.querySelectorAll(".vt")];
+  if (compare && viewButtons.length) {
+    const show = (pos, animate) => {
+      if (animate && !reduced) {
+        compare.classList.add("is-animating");
+        setTimeout(() => compare.classList.remove("is-animating"), 520);
+      }
+      compare.dataset.pos = pos;
+      compare.style.setProperty("--pos", `${pos}%`);
+      viewButtons.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.pos === pos)));
     };
-    range.addEventListener("input", update);
-    // Pointer drag anywhere on the comparison (mouse, pen, touch). The range input stays for keyboard users.
-    const setFromX = (x) => {
-      const r = compare.getBoundingClientRect();
-      range.value = Math.round(Math.min(100, Math.max(0, ((x - r.left) / r.width) * 100)));
-      update();
-    };
-    let dragging = false;
-    compare.addEventListener("pointerdown", (e) => {
-      dragging = true;
-      compare.setPointerCapture(e.pointerId);
-      setFromX(e.clientX);
-      range.focus({ preventScroll: true });
-      e.preventDefault();
-    });
-    compare.addEventListener("pointermove", (e) => { if (dragging) setFromX(e.clientX); });
-    const stop = () => { dragging = false; };
-    compare.addEventListener("pointerup", stop);
-    compare.addEventListener("pointercancel", stop);
-    update();
+    viewButtons.forEach((b) => b.addEventListener("click", () => show(b.dataset.pos, true)));
+    show("100", false);
+    // Phones have no hover lens: start on the shopper's view, then show what the AI reads, once.
+    if (window.matchMedia("(max-width: 720px)").matches && !reduced && "IntersectionObserver" in window) {
+      const once = new IntersectionObserver(([e]) => {
+        if (!e.isIntersecting) return;
+        once.disconnect();
+        setTimeout(() => { if (compare.dataset.pos === "100") show("0", true); }, 900);
+      }, { threshold: 0.5 });
+      once.observe(compare);
+    }
+  }
+
+  /* ---------- Mobile sticky action: after the hero button, until the closing section ---------- */
+  const heroCta = document.querySelector(".hero .cta-row");
+  const startSection = document.getElementById("start");
+  if (heroCta && startSection && "IntersectionObserver" in window) {
+    let pastHero = false, atStart = false;
+    const sync = () => document.body.classList.toggle("show-sticky", pastHero && !atStart);
+    new IntersectionObserver(([e]) => { pastHero = !e.isIntersecting && e.boundingClientRect.top < 0; sync(); }).observe(heroCta);
+    // Hide over the FAQ (so it never covers an answer) and over the closing CTA.
+    const covering = new Set();
+    const cover = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) covering.add(e.target); else covering.delete(e.target); });
+      atStart = covering.size > 0; sync();
+    }, { threshold: 0.2 });
+    [startSection, document.getElementById("faq")].forEach((el) => el && cover.observe(el));
   }
 
   /* ---------- Film (only when config.film is set) ---------- */
